@@ -11,33 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('setores')->insert([
-            'nome' => 'Administração',
-            'descricao' => ""
-        ]);
-
         DB::table('users')->insert([
             'name' => 'administrador',
             'email' => 'administrador@gmail.com',
-            'password' => bcrypt('Labo2020'),
-            'setor_id' => 1,
+            'password' => bcrypt('Espeto2020'),
             'cpf' => '',
-            'funcao' => 'Coordenador',
-            'encarregado' => '',
+            'telefone' => '00000000000',
+            'tipo' => 'Adm'
         ]);
 
-        DB::table('status')->insert([
-            'nome' => "Diponível"
-        ]);
-        DB::table('status')->insert([
-            'nome' => "Em uso"
-        ]); 
-        DB::table('status')->insert([
-            'nome' => "Em manutenção"
-        ]);
-
-        DB::table('tipo')->insert([
-            'nome' => "Escritório"
-        ]);
     }
 }
