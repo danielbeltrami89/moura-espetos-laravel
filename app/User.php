@@ -41,8 +41,7 @@ class User extends Authenticatable
 
     public function getUsers() {
         $query = DB::table('users as u')
-            ->join('setores as s', 'u.setor_id', '=', 's.id' )
-            ->select('u.*', 's.nome as setor_nome')
+            ->select('u.*')
             ->get();
 
         return $query;

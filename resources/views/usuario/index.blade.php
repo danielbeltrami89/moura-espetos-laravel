@@ -13,32 +13,26 @@
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>CPF</th>
               <th>Nome</th>
               <th>E-mail</th>
-              <th>Setor</th>
-              <th>Função</th>
+              <th>Telefone</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th>CPF</th>
               <th>Nome</th>
               <th>E-mail</th>
-              <th>Setor</th>
-              <th>Função</th>
+              <th>Telefone</th>
               <th>Ações</th>
             </tr>
           </tfoot>
           <tbody>
           @foreach($users as $user)
             <tr>
-              <td>{{ $user->cpf }}</td>
               <td>{{ $user->name }}</td>
               <td>{{ $user->email }}</td>
-              <td>{{ $user->setor_nome }}</td>
-              <td>{{ $user->funcao }}</td>
+              <td>{{ $user->telefone }}</td>
               <td style="text-align:center">                        
                   <a href="{{ route('ver_user', ['user_id' => $user->id ]) }}"><i class="fas fa-edit"></i></a>
                   <a href="javascript:;" data-toggle="modal" onclick="deleteData({{ $user->id }})" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></a>
@@ -63,7 +57,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Deseja realmente excluir o item <b><span id="mod-id"></span></b>? Essa ação não pode ser desfeita.</p>
+          <p>Deseja realmente excluir o usuário <b><span id="mod-id"></span></b>? Essa ação não pode ser desfeita.</p>
         </div>
         <div class="modal-footer">
           <form action="" id="deleteForm" method="post">

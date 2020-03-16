@@ -8,10 +8,12 @@
 <!-- Início CardForm -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Dados do usuário</h6>
+    <h6 class="m-0 font-weight-bold text-primary float-left">Dados do usuário</h6>
+    <h6 class="m-0 text-primary float-right">Tipo: {{ $tipo }}</h6>
+
   </div>
   <div class="card-body">
-    <form method="post" action="{{ $editar == 1 ? route('editar_user', [ 'user_id' => $user_id ]) : route('criar_user') }}">  
+    <form method="post" action="{{ $editar == 1 ? route('editar_user', [ 'user_id' => $user_id ]) : route('novo_user') }}">  
     {{csrf_field()}}
        
       <div class="form-row">
@@ -21,7 +23,7 @@
           <small class="erro">{{ $errors->first('name') }}</small>
         </div>
         <div class="form-group col-md-4">
-          <label for="cpf">CPF*</label>
+          <label for="cpf">CPF</label>
           <input type="text" class="form-control" name="cpf" id="cpfcnpj" value="{{ old('cpf') ? old('cpf') : $cpf }}" placeholder="">
           <small class="erro">{{ $errors->first('cpf') }}</small>
         </div>        
@@ -35,23 +37,19 @@
         </div>
 
         <div class="form-group col-md-5">
-          <label for="setor_id">Setor</label>
-          <select name="setor_id" class="form-control">
-            @foreach( $setores as $setor )
-              <option value="{{ $setor->id }}" {{ $setor_id == $setor->id ? 'selected="selected"' : '' }}>{{ $setor->nome }}</option>
-            @endforeach
-          </select>
-          <small class="erro">{{ $errors->first('setor_id') }}</small>
+          <label for="telefone">Telefone*</label>
+          <input type="text" class="form-control" name="telefone" value="{{ old('telefone') ? old('telefone') : $telefone }}" placeholder="">
+          <small class="erro">{{ $errors->first('telefone') }}</small>
         </div> 
       </div>  
 
-      <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" name="funcao" value="Coordenador" 
-            {{ $funcao == 'Coordenador' ? 'checked="checked"' : '' }}
-            {{ session()->get('func') != 'Coordenador' ? 'disabled="disabled"' : '' }}
-          >
-          <label class="form-check-label" for="funcao">Coordenador</label>
-      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="endereco">Endereço</label>
+          <input type="text" class="form-control" name="endereco" value="{{ old('endereco') ? old('endereco') : $endereco }}" placeholder="">
+          <small class="erro">{{ $errors->first('endereco') }}</small>
+        </div>
+      </div>  
 
       <hr class="my-4">    
 

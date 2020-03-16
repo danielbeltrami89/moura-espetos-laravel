@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
   <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }} ">
 
-  <title>LABO - Inventário</title>
+  <title>Moura Espetos</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('vendor/vendor_admin/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">

@@ -6,8 +6,8 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Painel</h1>
-    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+      <h1 class="h3 mb-0 text-gray-800">Painel</h1>
+      <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
     </div>
 
     <!-- Content Row -->
@@ -19,11 +19,11 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Itens</div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Menu</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $item_count }}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-box fa-2x text-gray-300"></i>
+                            <i class="fas fa-utensils fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -36,11 +36,11 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Setores</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $setor_count }}</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pedidos</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{-- $setor_count --}}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-fw fa-university fa-2x text-gray-300"></i>
+                            <i class="fas fa-fw fa-shopping-cart fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -53,11 +53,11 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Locais</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $local_count }}</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Clientes</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{-- $local_count --}}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-map-marker-alt fa-2x text-gray-300"></i>
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -70,11 +70,11 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Movimentações</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $moves_count }}</div>
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total do dia</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">R$ {{-- $moves_count --}}</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fas fa-dolly fa-2x text-gray-300"></i>
+                    <i class="fas fa-cash-register fa-2x text-gray-300"></i>
                 </div>
                 </div>
             </div>
@@ -85,77 +85,37 @@
     <!-- Content Row -->
 
     <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <h1 class="h3 text-gray-800 float-left">Útimos itens adicionados</h1>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered" id="dataTableHome" width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nome</th>
-              <th>Status</th>
-              <th>Setor</th>
-              <th>Local</th>
-              <th>Responsável</th>
-            </tr>
-          </thead>
-          <tbody>
-          @foreach($itens as $item)
-            <tr>
-              <td><a href="{{ route('ver_item', ['item_id' => $item->id ]) }}">{{ $item->id }}</a></td>
-              <td>{{ $item->nome }}</td>
-              <td>{{ $item->status }}</td>
-              <td>{{ $item->setor }}</td>
-              <td>{{ $item->local }}</td>
-              <td>{{ $item->user }}</td>
-            </tr>
-          @endforeach
-          </tbody>
-        </table>
+      <div class="card-header py-3">
+        <h1 class="h3 text-gray-800 float-left">Útimos itens adicionados</h1>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTableHome" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+            @foreach($itens as $item) 
+              <tr>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->nome }}</td>
+                <td>{{ $item->tipo }}</td>
+                <td>{{ $item->valor }}</td>
+              </tr>
+            @endforeach 
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- Início CardTable -->
-  <div class="card shadow mb-4">
-    <div class="card-header py-3">
-      <h1 class="h3 text-gray-800 float-left">Útimas movimentações</h1>
-    </div>
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered" id="dataTableHome" width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Item</th>
-              <th>Origem</th>
-              <th>Destino</th>
-              <th>Ocorrência</th>
-              <th>Responsável</th>
-            </tr>
-          </thead>
-          <tbody>
-          @foreach($movimentacoes as $movimentacao)
-            <tr>
-              <td>{{ $movimentacao->id }}</td>
-              <td>{{ $movimentacao->item }}</td>
-              <td>{{ $movimentacao->local_orig }}</td>
-              <td>{{ $movimentacao->local_dest }}</td>
-              <td>{{ Carbon\Carbon::parse($movimentacao->created_at)->sub('3 hours')->format('d/m/Y H:i')	}}</td>
-              <td>{{ $movimentacao->responsavel }}</td>
-            </tr>
-          @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <!-- Fim CardTable -->
 
     <!-- Content Row -->
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-lg-12 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -166,6 +126,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 @endsection

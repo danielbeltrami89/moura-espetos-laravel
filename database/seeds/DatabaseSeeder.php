@@ -17,7 +17,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('Espeto2020'),
             'cpf' => '',
             'telefone' => '00000000000',
-            'tipo' => 'Adm'
+            'tipo' => 'ADM'
+        ]);
+
+        DB::table('itens')->insert([
+            'nome' => 'Frango',
+            'descricao' => 'Feita em casa',
+            'valor' => '18,00',
+            'tipo' => 'MARMITA'
         ]);
 
     }

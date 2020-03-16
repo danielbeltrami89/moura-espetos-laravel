@@ -31,7 +31,7 @@ class LoginController extends Controller
         Session::put('name', $userName);
         Session::put('id', $userId);
         Session::put('func', $userFunc);
-        return redirect('/');
+        return redirect('/painel');
     }
 
     /**
@@ -54,6 +54,6 @@ class LoginController extends Controller
     public function logout(){
         Auth::logout();
         Session::flush();
-        return redirect("/login");
+        return redirect("/inicio");
     }
 }

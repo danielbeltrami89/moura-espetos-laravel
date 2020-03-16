@@ -86,7 +86,7 @@
   <footer class="footer mt-auto py-3" >
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; LABO Developer 2019</span>
+            <span>Copyright &copy; Moura Espetos 2020</span>
         </div>
     </div>
   </footer>

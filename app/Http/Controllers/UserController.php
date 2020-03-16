@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User as User;
-use App\Setor as Setor;
 
 class UserController extends Controller
 {
-    public function __construct(User $user, Setor $setor) {
+    public function __construct(User $user) {
         $this->user = $user;
-        $this->setor = $setor;
     }
 
     public function index() {
@@ -29,8 +27,9 @@ class UserController extends Controller
         $data['name'] = $request->input('name');
         $data['email'] = $request->input('email');
         $data['cpf'] = $request->input('cpf');
-        $data['funcao'] = $request->input('funcao');
-        $data['setor_id'] = $request->input('setor_id');
+        $data['telefone'] = $request->input('telefone');
+        $data['endereco'] = $request->input('endereco');
+        $data['tipo'] = $request->input('tipo');
         $data['password'] = $request->input('password');
 
         if( $request->isMethod('post'))
@@ -40,7 +39,7 @@ class UserController extends Controller
                 [
                     'name' => 'required',
                     'email' => 'required|email',
-                    'cpf' => 'required|min:14',
+                    'telefone' => 'required',
                     'password' => 'confirmed|min:6',
                 ]
             );
@@ -53,7 +52,6 @@ class UserController extends Controller
         }
 
         $data['editar'] = 0;
-        $data['setores'] = $this->setor->getSetores();
 
         //dd($data);
 
@@ -71,9 +69,9 @@ class UserController extends Controller
         $data['name'] = $user_data->name;
         $data['email'] = $user_data->email;
         $data['cpf'] = $user_data->cpf;
-        $data['funcao'] = $user_data->funcao;
-        $data['setor_id'] = $user_data->setor_id;
-        $data['setores'] = $this->setor->all();
+        $data['endereco'] = $user_data->endereco;
+        $data['telefone'] = $user_data->telefone;
+        $data['tipo'] = $user_data->tipo;
          
         return view('usuario/form', $data);
     }
@@ -86,8 +84,9 @@ class UserController extends Controller
         $data['name'] = $request->input('name');
         $data['email'] = $request->input('email');
         $data['cpf'] = $request->input('cpf');
-        $data['funcao'] = $request->input('funcao');
-        $data['setor_id'] = $request->input('setor_id');
+        $data['telefone'] = $request->input('telefone');
+        $data['tipo'] = $request->input('tipo');
+        $data['endereco'] = $request->input('endereco');
         $data['password'] = $request->input('password');
 
         if( $request->isMethod('post'))
@@ -97,8 +96,8 @@ class UserController extends Controller
                 [
                     'name' => 'required',
                     'email' => 'required|email',
-                    'cpf' => 'required|min:14',
-                    'password' => 'nullable|confirmed|min:6',
+                    'telefone' => 'required',
+                    'password' => 'confirmed|min:6',
                 ]
             );
 
@@ -106,8 +105,8 @@ class UserController extends Controller
             $user_data->name = $request->input('name');
             $user_data->email = $request->input('email');
             $user_data->cpf = $request->input('cpf');
-            $user_data->funcao = $request->input('funcao');
-            $user_data->setor_id = $request->input('setor_id');
+            $user_data->telefone = $request->input('telefone');
+            $user_data->tipo = $request->input('tipo');
             $user_data->password = bcrypt($request->input('password'));
             $user_data->save();
             
