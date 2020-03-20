@@ -35,13 +35,15 @@
           <tbody>
           @foreach($pedidos as $pedido)
             <tr>
-              <td>{{ $pedido->id }}</td>
+              <td><a href="{{ route('ver_pedido', ['pedido_id' => $pedido->id ]) }}">#{{ $pedido->id }}</a></td>
               <td>{{ $pedido->cliente_nome }}</td>
               <td>{{ $pedido->cliente_telefone }}</td>
               <td>{{ $pedido->valor_total }}</td>
               <td>{{ $pedido->status }}</td>
               <td>{{ Carbon\Carbon::parse($pedido->created_at)->sub('3 hours')->format('d/m/Y H:i')	}}</td>
-              <td></td>
+              <td style="text-align:center"> 
+                  <a href="{{ route('ver_pedido', ['pedido_id' => $pedido->id ]) }}"><i class="fas fa-edit mx-2"></i></a>
+              </td>
             </tr>
           @endforeach
           </tbody>

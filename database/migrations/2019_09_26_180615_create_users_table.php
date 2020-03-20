@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('cpf');
             $table->string('tipo');
+            $table->string('endereco');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -23,133 +23,55 @@ class PedidoController extends Controller {
         $data = [];
         $data['pedidos'] = $this->pedido->getPedidos();
 
-        return view('pedidos/index', $data);
+        return view('pedido/index', $data);
     }
 
-    public function addPedidoTeste(Pedido $pedido) {
-            $data = [];
+    public function salvarPedido(Pedido $pedido, ItemPedido $itemPedido) {
+        
+        $pedido->valor_total = 0;
+        $pedido->status = 'novo';
+        $pedido->telefone = '00000000000';
+        $salvou = $pedido->save(); 
+        if ($salvou) {
+            $itemPedido = new ItemPedido();
+            $itemPedido->pedido_id = $pedido->id;
+            $itemPedido->item_id = 1;
+            $itemPedido->save(); 
 
-            $data['valor_total'] = '25,00' ;
-            $data['status'] = 'novo';
-            $data['telefone'] = '00000000000';
-            
-            $pedido->insert($data);
+            $itemPedido2 = new ItemPedido();
+            $itemPedido2->pedido_id = $pedido->id;
+            $itemPedido2->item_id = 2;
+            $itemPedido2->save(); 
+        }
+        dd($pedido->id);
 
-            session()->flash('alert_sucesso', 'Pedido criado com sucesso!');
-            return redirect()->route('todos_pedidos');
+        session()->flash('alert_sucesso', 'Pedido criado com sucesso!');
+        return redirect()->route('todos_pedidos');
     }
+
    
-    public function verPedido(Pedido $pedido) {
-
-    }
-    // public function novo( Request $request, Item $item )
-    // {
-
-    //     $data = [];
-
-    //     $data['nome'] = $request->input('nome');
-    //     $data['descricao'] = $request->input('descricao');
-    //     $data['tipo'] = $request->input('tipo');
-    //     $data['valor'] = $request->input('valor');
-    //     $data['imagem'] = $request->input('imagem');
-
-    //     if( $request->isMethod('post'))
-    //     {
-    //         $this->validate(
-    //             $request,
-    //             [
-    //                 'nome' => 'required',
-    //                 'descricao' => 'required',
-    //                 'valor' => 'required',
-    //             ]
-    //         );
-
-    //         $item->insert($data);
-
-    //         session()->flash('alert_sucesso', 'Item criado com sucesso!');
-    //         return redirect()->route('todos_itens');
-    //     }
-
-    //     $data['editar'] = 0;
-
-    //     //dd($data);
-
-    //     return view('item/form', $data);
-    // }
-
-    // public function ver($item_id) 
-    // {
-    //     $data = [];
-    //     $data['editar'] = 1;
-
-    //     $data['item_id'] = $item_id;
-
-    //     $item_data = $this->item->find($item_id);
-    //     $data['nome'] = $item_data->nome;
-    //     $data['descricao'] = $item_data->descricao;
-    //     $data['tipo'] = $item_data->tipo;
-    //     $data['valor'] = $item_data->valor;
-    //     $data['imagem'] = $item_data->imagem;
-         
-    //     //dd($data);
-
-    //     return view('item/form', $data);
-    // }
-
-    // public function editar( Request $request, $item_id, Item $item)
-    // {
-
-    //     $data = [];
-
-    //     $data['nome'] = $request->input('nome');
-    //     $data['descricao'] = $request->input('descricao');
-    //     $data['tipo'] = $request->input('tipo');
-    //     $data['valor'] = $request->input('valor');
-    //     $data['imagem'] = $request->input('imagem');
-
-    //     if( $request->isMethod('post'))
-    //     {
-    //         $this->validate(
-    //             $request,
-    //             [
-    //                 'nome' => 'required',
-    //                 'descricao' => 'required',
-    //                 'valor' => 'required',
-    //             ]
-    //         );
-
-    //         $item_data = $this->item->find($item_id);
-    //         $item_data->nome = $request->input('nome');
-    //         $item_data->descricao = $request->input('descricao');
-    //         $item_data->imagem = $request->input('iamgem');
-    //         $item_data->tipo = $request->input('tipo');
-    //         $item_data->valor = $request->input('valor');     
-    //         $item_data->save();
+    public function ver(Pedido $pedido, $pedido_id, ItemPedido $itemPedido) {
+        
+        $data = [];
+        $data['pedido'] = $this->pedido->getPedido($pedido_id);
+        $data['itens_pedido'] = $this->itemPedido->getItensPedido($pedido_id);
             
-    //         session()->flash('alert_sucesso', 'Item editado com sucesso!');
-    //         return redirect()->route('todos_itens');
-    //     }
+        //dd($data);
 
-    //     $data['editar'] = 0;
+        return view('pedido/form', $data);
+    }
 
-    //     return view('item/form', $data);
-    // }
 
-    // public function deletar($item_id)
-    // {
-    //     $item_del = $this->item->find($item_id);
+    public function editar(Request $request, Pedido $pedido, $pedido_id) {
         
-    //     if ($item_del != null){
-    //         $item_del->delete();
+        if( $request->isMethod('post')) {
 
-    //         session()->flash('alert_sucesso', 'Item deletado com sucesso!');
-    //         return redirect()->route('todos_itens');
-        
-    //     }
-
-    //     session()->flash('alert_erro', 'Erro ao deletar item, tente novamente mais tarde.');
-    //     return redirect()->route('todos_itens');
-    // } 
-    
-
+            $pedido_data = $this->pedido->find($pedido_id);
+            $pedido_data->status = $request->input('status');         
+            $pedido_data->save();
+            
+            session()->flash('alert_sucesso', 'Pedido editado com sucesso!');
+            return redirect()->route('todos_pedidos');
+        }
+    }
 }

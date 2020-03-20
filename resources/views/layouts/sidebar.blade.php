@@ -28,16 +28,10 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseItem" aria-expanded="true" aria-controls="collapseItem">
+  <a class="nav-link collapsed" href="{{ route('todos_itens') }}">
     <i class="fas fa-utensils"></i>
     <span>Menu</span>
   </a>
-  <div id="collapseItem" class="collapse" aria-labelledby="headingItem" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <a class="collapse-item" href="{{ route('todos_itens') }}">Todos menus</a>
-      <a class="collapse-item" href="{{ route('novo_item') }}">Novo menu</a>
-    </div>
-  </div>
 </li>
 
 <li class="nav-item">

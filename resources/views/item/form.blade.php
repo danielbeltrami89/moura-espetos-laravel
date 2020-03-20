@@ -10,7 +10,7 @@
     <h6 class="m-0 font-weight-bold text-primary">Dados do item </h6>
   </div>
   <div class="card-body">
-    <form method="post" action="{{ $editar == 1 ? route('editar_item', [ 'item_id' => $item_id ]) : route('novo_item') }}">
+    <form method="post" action="{{ $editar == 1 ? route('editar_item', [ 'item_id' => $item_id ]) : route('salvar_item') }}">
     {{ csrf_field() }}
 
       <div class="form-row">
@@ -21,7 +21,7 @@
         </div> 
         <div class="form-group col-md-4">
           <label for="valor">Valor</label>
-          <input type="text" class="form-control" name="valor" value="{{ old('valor') ? old('valor') : $valor }}" pattern="^\$\d{1,3}(.\d{3})*(\,\d+)?$" value="" data-type="currency" placeholder="R$ 00,00">
+          <input type="text" class="form-control" name="valor" value="{{ old('valor') ? old('valor') : $valor }}" pattern="^\$\d{1,3}(.\d{3})*(\,\d+)?$" placeholder="R$ 00,00">
           <small class="erro">{{ $errors->first('valor') }}</small>
         </div>
       </div>

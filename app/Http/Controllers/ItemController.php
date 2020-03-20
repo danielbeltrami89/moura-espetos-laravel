@@ -22,21 +22,13 @@ class ItemController extends Controller {
 
     public function novo( Request $request, Item $item )
     {
-        // $data['nome'] = $request->input('nome');
-        // $data['descricao'] = $request->input('descricao');
-        // $data['tipo'] = $request->input('tipo');
-        // $data['valor'] = $request->input('valor');
-        // $data['imagem'] = $request->input('imagem');
-
-
         $item_data = $item;
         $item_data->nome = $request->input('nome');
         $item_data->descricao = $request->input('descricao');
         $item_data->imagem = $request->input('iamgem');
         $item_data->tipo = $request->input('tipo');
-        $item_data->valor = $request->input('valor');     
+        $item_data->valor = str_replace(',', '.', $request->input('valor'));      
         
-
         if( $request->isMethod('post'))
         {
             $this->validate(
@@ -48,12 +40,16 @@ class ItemController extends Controller {
                 ]
             );
             $item_data->save();
-            //$item->insert($data);
 
             session()->flash('alert_sucesso', 'Item criado com sucesso!');
             return redirect()->route('todos_itens');
         }
 
+        $data['nome'] = $item_data->nome;
+        $data['descricao'] = $item_data->descricao;
+        $data['tipo'] = $item_data->tipo;
+        $data['valor'] = $item_data->valor;
+        $data['imagem'] = $item_data->imagem;
         $data['editar'] = 0;
 
         //dd($data);
@@ -72,7 +68,7 @@ class ItemController extends Controller {
         $data['nome'] = $item_data->nome;
         $data['descricao'] = $item_data->descricao;
         $data['tipo'] = $item_data->tipo;
-        $data['valor'] = $item_data->valor;
+        $data['valor'] = str_replace('.', ',',  $item_data->valor);
         $data['imagem'] = $item_data->imagem;
          
         //dd($data);
@@ -98,7 +94,7 @@ class ItemController extends Controller {
             $item_data->descricao = $request->input('descricao');
             $item_data->imagem = $request->input('iamgem');
             $item_data->tipo = $request->input('tipo');
-            $item_data->valor = $request->input('valor');     
+            $item_data->valor = str_replace(',', '.', $request->input('valor'));          
             $item_data->save();
             
             session()->flash('alert_sucesso', 'Item editado com sucesso!');

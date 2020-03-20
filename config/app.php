@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Moura Espetos'),
 
     /*
     |--------------------------------------------------------------------------
@@ -226,7 +226,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Form' => 'Collective\Html\FormFacade',
+        'Form' => Collective\Html\FormFacade::Class,
+        'Html' => Collective\Html\HtmlFacade::Class,
 
     ],
 

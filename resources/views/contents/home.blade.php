@@ -37,7 +37,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pedidos</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{-- $setor_count --}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $pedido_count }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-fw fa-shopping-cart fa-2x text-gray-300"></i>
@@ -54,7 +54,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Clientes</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{-- $local_count --}}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $cliente_count }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -71,7 +71,7 @@
                 <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total do dia</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">R$ {{-- $moves_count --}}</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">R$ 0,00</div>
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-cash-register fa-2x text-gray-300"></i>

@@ -18,7 +18,7 @@ class CreateItensTable extends Migration
             $table->string('nome');
             $table->string('descricao')->nullable();
             $table->string('imagem')->nullable();
-            $table->string('valor');
+            $table->decimal('valor', 5,2);
             $table->string('tipo');
             $table->timestamps();
         });

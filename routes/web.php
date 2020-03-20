@@ -19,14 +19,15 @@ Route::middleware('auth')->group( function(){
     Route::get('/painel/itens', 'ItemController@index')->name('todos_itens'); 
     Route::post('/painel/itens/deletar/{item_id}', 'ItemController@deletar')->name('deletar_item'); 
     Route::get('/painel/itens/novo', 'ItemController@novo')->name('novo_item');
+    Route::post('/painel/itens/novo', 'ItemController@novo')->name('salvar_item');
     Route::get('/painel/itens/editar/{item_id}', 'ItemController@ver')->name('ver_item');
     Route::post('/painel/itens/editar/{item_id}', 'ItemController@editar')->name('editar_item');
 
     //Rotas para pedidos
     Route::get('/painel/pedidos', 'PedidoController@index')->name('todos_pedidos'); 
-    Route::get('/painel/pedidos/teste', 'PedidoController@addPedidoTeste')->name('teste'); 
-
-    // Route::post('/itens/mover/{item_id}/{local_orig_id}/{local_dest_id}', 'MovimentacaoController@mover')->name('mover_item'); 
+    Route::get('/painel/pedidos/teste', 'PedidoController@salvarPedido')->name('teste'); 
+    Route::get('/painel/pedidos/editar/{pedido_id}', 'PedidoController@ver')->name('ver_pedido');
+    Route::post('/painel/pedidos/editar/{pedido_id}', 'PedidoController@editar')->name('editar_pedido'); 
 
     // Rotas para usuários
     Route::get('/painel/usuarios', 'UserController@index')->name('todos_users'); 
@@ -39,7 +40,7 @@ Route::middleware('auth')->group( function(){
 Auth::routes();
 Route::post('/', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/inicio', function() {  return view('/inicio'); });
+Route::get('/', function() {  return view('/inicio'); })->name('inicio');
 
 // Gerador de senha manual
 Route::get('/generate/password', function() { return bcrypt('aaaaaa'); } );
