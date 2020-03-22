@@ -5,26 +5,36 @@
 @include('layouts-cliente.header')
 
   <body>
+   
+    @include('layouts-cliente.topbar')
 
-    <nav class="site-header sticky-top py-1">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+    <div class="position-relative overflow-hidden m-md-3 text-center bg-dark">
+      
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{{ asset('img/img_admin/banner.png') }}" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{ asset('img/img_admin/banner2.png') }}" alt="Second slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
         </a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        
       </div>
-    </nav>
-
-    <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
-      <img src="{{ asset('img/img_admin/banner.png') }}">
     </div>
-
+    
     <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
       <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
         <div class="my-3 py-3">
@@ -59,6 +69,11 @@
       </div>
     </div>
 
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.0184976144883!2d-46.75294068502076!3d-23.639508584644137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5eb9ae849417622e!2sMoura%20Espetos!5e0!3m2!1spt-BR!2sbr!4v1584808027588!5m2!1spt-BR!2sbr" 
+      width="100%" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+    </iframe>
+    
     @include('layouts-cliente.footer')
 
   </body>

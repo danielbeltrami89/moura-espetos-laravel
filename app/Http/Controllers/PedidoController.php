@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Http\Request;
 use App\Pedido as Pedido;
@@ -26,7 +27,7 @@ class PedidoController extends Controller {
         return view('pedido/index', $data);
     }
 
-    public function salvarPedido(Pedido $pedido, ItemPedido $itemPedido) {
+    public function addPedido(Request $request, Pedido $pedido, ItemPedido $itemPedido) {
         
         $pedido->valor_total = 0;
         $pedido->status = 'novo';
@@ -35,18 +36,12 @@ class PedidoController extends Controller {
         if ($salvou) {
             $itemPedido = new ItemPedido();
             $itemPedido->pedido_id = $pedido->id;
-            $itemPedido->item_id = 1;
+            $itemPedido->item_id = $request->get('id');
             $itemPedido->save(); 
-
-            $itemPedido2 = new ItemPedido();
-            $itemPedido2->pedido_id = $pedido->id;
-            $itemPedido2->item_id = 2;
-            $itemPedido2->save(); 
         }
-        dd($pedido->id);
+        //dd($pedido->id);
 
-        session()->flash('alert_sucesso', 'Pedido criado com sucesso!');
-        return redirect()->route('todos_pedidos');
+        return Redirect::back()->with('msg_return', 'Pedido criado com sucesso!');
     }
 
    

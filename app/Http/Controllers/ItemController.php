@@ -20,6 +20,14 @@ class ItemController extends Controller {
         return view('item/index', $data);
     }
 
+    public function indexCliente() {
+
+        $data = [];
+        $data['itens'] = $this->item->getItens();
+
+        return view('cliente/faca-seu-pedido', $data);
+    }
+
     public function novo( Request $request, Item $item )
     {
         $item_data = $item;

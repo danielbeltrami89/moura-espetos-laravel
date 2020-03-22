@@ -11,7 +11,7 @@
 |
 */
 
-Route::middleware('auth')->group( function(){
+Route::middleware(['auth','check.adm'])->group( function(){
 
     Route::get('/painel', 'ContentsController@home')->name('home');
 
@@ -40,7 +40,10 @@ Route::middleware('auth')->group( function(){
 Auth::routes();
 Route::post('/', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', function() {  return view('/inicio'); })->name('inicio');
+Route::get('/', function() {  return view('cliente/inicio'); })->name('inicio');
+Route::get('/faca-seu-pedido', 'ItemController@indexCliente')->name('pedido_cliente');
+Route::post('/faca-seu-pedido', 'PedidoController@addPedido')->name('add_pedido'); 
+
 
 // Gerador de senha manual
 Route::get('/generate/password', function() { return bcrypt('aaaaaa'); } );

@@ -16,4 +16,6 @@
   <!-- Custom styles for this template -->
   <link href="{{ asset('css/custom_cliente.css') }}" rel="stylesheet">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>

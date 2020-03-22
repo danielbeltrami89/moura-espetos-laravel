@@ -1,15 +1,30 @@
 <!-- Topbar -->
-<nav class="navbar navbar-expand navbar-dark bg-gradient-primary-nav topbar mb-0 static-top shadow">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-1">
+
   <a class="navbar-brand" href="{{ route('inicio') }}">Moura Espetos</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <a class="nav-link float-right ml-auto" href="{{ route('todos_itens') }}">
-    <span class="textwhite">Faça seu pedido</span>
-    <i class="fas fa-utensils iconwhite"></i>
-    
-  </a>
-  
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ route('inicio') }}">Início<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Quem somos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('pedido_cliente') }}">Produtos</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <a class="nav-link" href="{{ route('login') }}">Entre</a>
+    </span>
+    <span class="navbar-text">
+      <a class="nav-link" href="{{ route('pedido_cliente') }}">Carrinho</a>
+    </span>
+  </div>
 </nav>
 <!-- End of Topbar -->

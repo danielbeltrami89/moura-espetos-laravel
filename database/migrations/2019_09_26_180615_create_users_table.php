@@ -22,7 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('cpf');
             $table->string('tipo');
-            $table->string('endereco');
+            $table->string('endereco')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('uf')->nullable();
+            $table->string('complemento')->nullable();
+            $table->bigInteger('cep')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
