@@ -101,3 +101,15 @@
         column-count: 5;
     }
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #0a3d5c;
+  border-color: #0a3d5c;
+}
+
+.btn-primary:hover{
+  color:#fff; 
+  background-color:#004f77;
+  border-color:#2653d4;
+}
