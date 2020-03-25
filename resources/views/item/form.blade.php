@@ -10,7 +10,7 @@
     <h6 class="m-0 font-weight-bold text-primary">Dados do item </h6>
   </div>
   <div class="card-body">
-    <form method="post" action="{{ $editar == 1 ? route('editar_item', [ 'item_id' => $item_id ]) : route('salvar_item') }}">
+    <form method="post" action="{{ $editar == 1 ? route('editar_item', [ 'item_id' => $item_id ]) : route('salvar_item') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
 
       <div class="form-row">
@@ -30,6 +30,12 @@
         <label for="descricao">Descrição</label>
         <input type="text" class="form-control" name="descricao" value="{{ old('descricao') ? old('descricao') : $descricao }}" placeholder="">
         <small class="erro">{{ $errors->first('descricao') }}</small>
+      </div>
+
+      <div class="form-group">
+        <label for="imagem">Imagem</label>
+        <img src="{{ url("imagem_itens/{$imagem}") }}" alt="">
+        <input type="file" name="image" class="form-control">
       </div>
 
       <div class="form-row">

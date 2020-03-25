@@ -33,7 +33,6 @@ class ItemController extends Controller {
         $item_data = $item;
         $item_data->nome = $request->input('nome');
         $item_data->descricao = $request->input('descricao');
-        $item_data->imagem = $request->input('iamgem');
         $item_data->tipo = $request->input('tipo');
         $item_data->valor = str_replace(',', '.', $request->input('valor'));      
         
@@ -47,6 +46,36 @@ class ItemController extends Controller {
                     'valor' => 'required',
                 ]
             );
+
+             // Define o valor default para a variável que contém o nome da imagem 
+            $nameFile = null;
+        
+            // Verifica se informou o arquivo e se é válido
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                
+                // Define um aleatório para o arquivo baseado no timestamps atual
+                $name = uniqid(date('HisYmd'));
+        
+                // Recupera a extensão do arquivo
+                $extension = $request->image->extension();
+        
+                // Define finalmente o nome
+                $nameFile = "{$name}.{$extension}";
+        
+                // Faz o upload:
+                $upload = $request->image->storeAs('imagem_itens', $nameFile);
+                // Se tiver funcionado o arquivo foi armazenado em storage/app/public/imagem_iten/nomedinamicoarquivo.extensao
+        
+                // Verifica se NÃO deu certo o upload (Redireciona de volta)
+                if ( !$upload )
+                    return redirect()
+                                ->back()
+                                ->with('error', 'Falha ao fazer upload')
+                                ->withInput();
+        
+            }
+            $item_data->imagem = $nameFile;
+
             $item_data->save();
 
             session()->flash('alert_sucesso', 'Item criado com sucesso!');
@@ -100,9 +129,38 @@ class ItemController extends Controller {
             $item_data = $this->item->find($item_id);
             $item_data->nome = $request->input('nome');
             $item_data->descricao = $request->input('descricao');
-            $item_data->imagem = $request->input('iamgem');
             $item_data->tipo = $request->input('tipo');
-            $item_data->valor = str_replace(',', '.', $request->input('valor'));          
+            $item_data->valor = str_replace(',', '.', $request->input('valor'));    
+            
+            // Define o valor default para a variável que contém o nome da imagem 
+            $nameFile = null;
+    
+            // Verifica se informou o arquivo e se é válido
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                
+                // Define um aleatório para o arquivo baseado no timestamps atual
+                $name = uniqid(date('HisYmd'));
+        
+                // Recupera a extensão do arquivo
+                $extension = $request->image->extension();
+        
+                // Define finalmente o nome
+                $nameFile = "{$name}.{$extension}";
+        
+                // Faz o upload:
+                $upload = $request->image->storeAs('imagem_itens', $nameFile);
+                // Se tiver funcionado o arquivo foi armazenado em storage/app/public/imagem_iten/nomedinamicoarquivo.extensao
+        
+                // Verifica se NÃO deu certo o upload (Redireciona de volta)
+                if ( !$upload )
+                    return redirect()
+                                ->back()
+                                ->with('error', 'Falha ao fazer upload')
+                                ->withInput();
+        
+              }
+              $item_data->imagem = $nameFile;
+
             $item_data->save();
             
             session()->flash('alert_sucesso', 'Item editado com sucesso!');

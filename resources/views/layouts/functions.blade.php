@@ -145,11 +145,94 @@
     });
     // ------- Mascara para CNPJ/CPF (Fim) ------- 
 
+    function fMasc(objeto,mascara) {
+            obj=objeto
+            masc=mascara
+            setTimeout("fMascEx()",1)
+        }
+        function fMascEx() {
+            obj.value=masc(obj.value)
+        }
+        function mTel(tel) {
+            tel=tel.replace(/\D/g,"")
+            tel=tel.replace(/^(\d)/,"($1")
+            tel=tel.replace(/(.{3})(\d)/,"$1)$2")
+            if(tel.length == 9) {
+                tel=tel.replace(/(.{1})$/,"-$1")
+            } else if (tel.length == 10) {
+                tel=tel.replace(/(.{2})$/,"-$1")
+            } else if (tel.length == 11) {
+                tel=tel.replace(/(.{3})$/,"-$1")
+            } else if (tel.length == 12) {
+                tel=tel.replace(/(.{4})$/,"-$1")
+            } else if (tel.length > 12) {
+                tel=tel.replace(/(.{4})$/,"-$1")
+            }
+            return tel;
+        }
+        function mCPF(cpf){
+            cpf=cpf.replace(/\D/g,"")
+            cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+            cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+            cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+            return cpf
+        }
+        function mCEP(cep){
+            cep=cep.replace(/\D/g,"")
+            cep=cep.replace(/^(\d{2})(\d)/,"$1.$2")
+            cep=cep.replace(/\.(\d{3})(\d)/,".$1-$2")
+            return cep
+        }
+        function mNum(num){
+            num=num.replace(/\D/g,"")
+            return num
+        }
 </script>
 <!-- Fim Logout Modal-->
 
 <!-- Core plugin JavaScript-->
 <script src="{{ asset('vendor/vendor_admin/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<script>
+			/*
+			 * Para efeito de demonstração, o JavaScript foi
+			 * incorporado no arquivo HTML.
+			 * O ideal é que você faça em um arquivo ".js" separado. Para mais informações
+			 * visite o endereço https://developer.yahoo.com/performance/rules.html#external
+			 */
+			
+			// Registra o evento blur do campo "cep", ou seja, a pesquisa será feita
+			// quando o usuário sair do campo "cep"
+			$("#cep").blur(function(){
+				// Remove tudo o que não é número para fazer a pesquisa
+				var cep = this.value.replace(/[^0-9]/, "");
+				
+				// Validação do CEP; caso o CEP não possua 8 números, então cancela
+				// a consulta
+				if(cep.length != 8){
+					return false;
+				}
+				
+				// A url de pesquisa consiste no endereço do webservice + o cep que
+				// o usuário informou + o tipo de retorno desejado (entre "json",
+				// "jsonp", "xml", "piped" ou "querty")
+				var url = "https://viacep.com.br/ws/"+cep+"/json/";
+				
+				// Faz a pesquisa do CEP, tratando o retorno com try/catch para que
+				// caso ocorra algum erro (o cep pode não existir, por exemplo) a
+				// usabilidade não seja afetada, assim o usuário pode continuar//
+				// preenchendo os campos normalmente
+				$.getJSON(url, function(dadosRetorno){
+					try{
+						// Preenche os campos de acordo com o retorno da pesquisa
+						$("#endereco").val(dadosRetorno.logradouro);
+						$("#bairro").val(dadosRetorno.bairro);
+						$("#cidade").val(dadosRetorno.localidade);
+						$("#uf").val(dadosRetorno.uf);
+					}catch(ex){}
+				});
+			});
+		</script>
 
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/js_admin/sb-admin-2.min.js') }}"></script>

@@ -20,10 +20,14 @@
       </li>
     </ul>
     <span class="navbar-text">
-      <a class="nav-link" href="{{ route('login') }}">Entre</a>
+      <a class="nav-link" href="{{ route('pedido_cliente') }}">Carrinho</a>
     </span>
     <span class="navbar-text">
-      <a class="nav-link" href="{{ route('pedido_cliente') }}">Carrinho</a>
+      @if (session()->has('name'))
+      <a class="nav-link" href="">{{ session()->get('name') }}</a>
+      @else
+      <a class="nav-link" href="{{ route('login') }}">{{ session()->get('name') }}</a>
+      @endif
     </span>
   </div>
 </nav>
