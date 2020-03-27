@@ -113,3 +113,9 @@
   background-color:#004f77;
   border-color:#2653d4;
 }
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}

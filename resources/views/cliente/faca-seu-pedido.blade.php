@@ -19,9 +19,10 @@
         data-id="{{ $item->id }}"
         data-title="{{ $item->nome }}"
         data-desc="{{ $item->descricao }}"
+        data-img="{{ url("storage/imagem_itens/{$item->imagem}") }}"
         data-target="#itemModal" >
-        <div class="card" style="width: auto; display: inline-block">
-          <img class="card-img-top" src="{{ asset('img/img_admin/temp.png') }}" alt="Card image cap">
+        <div class="card " style="width: auto; display: inline-block">
+          <img class="card-img-top" src="{{ url("storage/imagem_itens/{$item->imagem}") }}">
           <div class="card-body">
             <h6>{{ $item->nome }}</h6>
             <small class="card-text">{{ str_limit($item->descricao, $limit = 150, $end = '...') }}</small>
@@ -38,10 +39,10 @@
         aria-labelledby="itemModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <img class="img" src="{{ asset('img/img_admin/temp.png') }}" style="width: 100%">
+          <img  id="item-img" class="img" src="" style="width: 100%">
           <div class="modal-body">
-            <h4 class="modal-title" id="itemModalLabel"></h4>
-            <p id="fav-desc"></p>
+            <h4 class="modal-title" id="item-title"></h4>
+            <p id="item-desc"></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -74,9 +75,9 @@
     <script type="text/javascript">
       $(function() {
         $('#itemModal').on("show.bs.modal", function (e) {
-            $("#itemModalLabel").html($(e.relatedTarget).data('title'));
-            $("#fav-title").html($(e.relatedTarget).data('title'));         
-            $("#fav-desc").html($(e.relatedTarget).data('desc'));
+            $("#item-title").html($(e.relatedTarget).data('title'));    
+            $("#item-desc").html($(e.relatedTarget).data('desc'));
+            $('#item-img').attr('src',$(e.relatedTarget).data('img'));
             $("#item-id").val($(e.relatedTarget).data('id'));
         });
     });

@@ -64,7 +64,7 @@ class ItemController extends Controller {
         
                 // Faz o upload:
                 $upload = $request->image->storeAs('imagem_itens', $nameFile);
-                // Se tiver funcionado o arquivo foi armazenado em storage/app/public/imagem_iten/nomedinamicoarquivo.extensao
+                // Se tiver funcionado o arquivo foi armazenado em storage/app/public/imagem_itens/nomedinamicoarquivo.extensao
         
                 // Verifica se NÃO deu certo o upload (Redireciona de volta)
                 if ( !$upload )

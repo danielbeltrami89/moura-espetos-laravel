@@ -23,10 +23,10 @@
       <a class="nav-link" href="{{ route('pedido_cliente') }}">Carrinho</a>
     </span>
     <span class="navbar-text">
-      @if (session()->has('name'))
+      @if (session()->get('name') != "" )
       <a class="nav-link" href="">{{ session()->get('name') }}</a>
       @else
-      <a class="nav-link" href="{{ route('login') }}">{{ session()->get('name') }}</a>
+      <a class="nav-link" href="{{ route('login') }}">Entrar</a>
       @endif
     </span>
   </div>
