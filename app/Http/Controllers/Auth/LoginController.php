@@ -28,9 +28,11 @@ class LoginController extends Controller
         $userName = Auth::user()->name;
         $userId = Auth::user()->id;
         $userTipo = Auth::user()->tipo;
+        $userTel = Auth::user()->telefone;
 
         Session::put('name', $userName);
         Session::put('id', $userId);
+        Session::put('tel', $userTel);
 
         if ( $userTipo == 'ADM' ) {
             return redirect('/painel');

@@ -38,12 +38,28 @@ Route::middleware(['auth','check.adm'])->group( function(){
 });
 
 Auth::routes();
+
 Route::post('/', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', function() {  return view('cliente/inicio'); })->name('inicio');
-Route::get('/faca-seu-pedido', 'ItemController@indexCliente')->name('pedido_cliente');
-Route::post('/faca-seu-pedido', 'PedidoController@addPedido')->name('add_pedido'); 
+Route::get('/pedidos-cliente/{cliente_id}', 'PedidoController@verPedidosCliente')->name('pedidos-cliente'); 
+Route::get('/cliente/meus-dados/{user_id}', 'UserController@verCliente')->name('ver_cliente');
+Route::post('/cliente/meus-dados/{user_id}', 'UserController@editarCliente')->name('editar_cliente');
 
+
+
+Route::get('/', function() {  return view('cliente/inicio'); })->name('inicio');
+Route::get('/faca-seu-pedido', 'ItemController@indexCliente')->name('produtos_cliente');
+Route::get('/faca-seu-pedido/teste', 'PedidoController@addPedido')->name('add_pedido'); 
+
+Route::get('/faca-seu-pedido/fazer-pedido', 'PedidoController@fazerPedido')->name('fazer_pedido'); 
+Route::post('/faca-seu-pedido/add-carrinho', 'PedidoController@addToCart')->name('add-cart'); 
+Route::get('/faca-seu-pedido/carrinho/', function() {  return view('cliente/carrinho'); })->name('cart'); 
+
+Route::patch('update-cart', 'PedidoController@update');
+Route::delete('remove-from-cart', 'PedidoController@remove');
+
+Route::get('/pedidos-cliente/{cliente_id}', 'PedidoController@verPedidosCliente')->name('pedidos-cliente'); 
 
 // Gerador de senha manual
 Route::get('/generate/password', function() { return bcrypt('aaaaaa'); } );
+

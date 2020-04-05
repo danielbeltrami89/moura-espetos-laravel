@@ -61,14 +61,6 @@ class RouteCompiler implements RouteCompilerInterface
             $hostRegex = $result['regex'];
         }
 
-        $locale = $route->getDefault('_locale');
-        if (null !== $locale && null !== $route->getDefault('_canonical_route') && preg_quote($locale, self::REGEX_DELIMITER) === $route->getRequirement('_locale')) {
-            $requirements = $route->getRequirements();
-            unset($requirements['_locale']);
-            $route->setRequirements($requirements);
-            $route->setPath(str_replace('{_locale}', $locale, $route->getPath()));
-        }
-
         $path = $route->getPath();
 
         $result = self::compilePattern($route, $path, false);
@@ -100,7 +92,7 @@ class RouteCompiler implements RouteCompilerInterface
         );
     }
 
-    private static function compilePattern(Route $route, string $pattern, bool $isHost): array
+    private static function compilePattern(Route $route, $pattern, $isHost)
     {
         $tokens = [];
         $variables = [];

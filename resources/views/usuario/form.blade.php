@@ -16,6 +16,8 @@
     <form method="post" action="{{ $editar == 1 ? route('editar_user', [ 'user_id' => $user_id ]) : route('novo_user') }}">  
     {{csrf_field()}}
        
+    <input type="hidden" class="form-control" name="tipo" value="{{ $tipo }}">
+
       <div class="form-row">
         <div class="form-group col-md-8">
           <label for="name">Nome*</label>
@@ -44,12 +46,48 @@
       </div>  
 
       <div class="form-row">
-        <div class="form-group col-md-12">
+      <div class="form-group col-md-3">
+          <label for="cep">CEP*</label>
+          <input type="text" class="form-control" name="cep" value="{{ old('cep') ? old('cep') : $cep }}" placeholder="">
+          <small class="erro">{{ $errors->first('cep') }}</small>
+        </div>
+        <div class="form-group col-md-7">
           <label for="endereco">Endereço</label>
           <input type="text" class="form-control" name="endereco" value="{{ old('endereco') ? old('endereco') : $endereco }}" placeholder="">
           <small class="erro">{{ $errors->first('endereco') }}</small>
         </div>
+        <div class="form-group col-md-2">
+          <label for="numero">Número</label>
+          <input type="text" class="form-control" name="numero" value="{{ old('numero') ? old('numero') : $numero }}" placeholder="">
+          <small class="erro">{{ $errors->first('numero') }}</small>
+        </div>
       </div>  
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="complemento">Complemento</label>
+          <input type="text" class="form-control" name="complemento" value="{{ old('complemento') ? old('complemento') : $complemento }}" placeholder="">
+          <small class="erro">{{ $errors->first('complemento') }}</small>
+        </div>
+      </div> 
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="bairro">Bairro</label>
+          <input type="text" class="form-control" name="bairro" value="{{ old('bairro') ? old('bairro') : $bairro }}" placeholder="">
+          <small class="erro">{{ $errors->first('bairro') }}</small>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="cidade">Cidade</label>
+          <input type="text" class="form-control" name="cidade" value="{{ old('cidade') ? old('cidade') : $cidade }}" placeholder="">
+          <small class="erro">{{ $errors->first('cidade') }}</small>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="uf">Estado</label>
+          <input type="text" class="form-control" name="uf" value="{{ old('uf') ? old('uf') : $uf }}" placeholder="">
+          <small class="erro">{{ $errors->first('uf') }}</small>
+        </div>
+      </div>   
 
       <hr class="my-4">    
 

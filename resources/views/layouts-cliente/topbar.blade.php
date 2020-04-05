@@ -16,19 +16,43 @@
         <a class="nav-link" href="#">Quem somos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('pedido_cliente') }}">Produtos</a>
+        <a class="nav-link" href="{{ route('produtos_cliente') }}">Produtos</a>
       </li>
     </ul>
-    <span class="navbar-text">
-      <a class="nav-link" href="{{ route('pedido_cliente') }}">Carrinho</a>
-    </span>
-    <span class="navbar-text">
+
+    <ul class="nav navbar-nav navbar-right mr-3">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('cart') }}">Carrinho</a>
+      </li>
+      
       @if (session()->get('name') != "" )
-      <a class="nav-link" href="">{{ session()->get('name') }}</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ strtok(session()->get('name'), " ") }}
+        </a>
+
+        <!-- Dropdown - User Information -->
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="{{ route('ver_cliente', ['user_id' => session()->get('id') ]) }}">Meus dados</a>
+          <a class="dropdown-item" href="{{ route('pedidos-cliente' , ['cliente_id' => session()->get('tel') ]) }}">Meus pedidos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ route('logout') }}" 
+              onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+              Sair
+            </a>    
+            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </div>
+      </li>
+      
       @else
-      <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+      </li>
       @endif
-    </span>
+    </ul>
+    
   </div>
 </nav>
 <!-- End of Topbar -->

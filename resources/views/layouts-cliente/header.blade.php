@@ -12,10 +12,12 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('css/css_admin/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/custom_cliente.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/vendor_admin/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <!-- Custom styles for this template -->
-  <link href="{{ asset('css/custom_cliente.css') }}" rel="stylesheet">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>

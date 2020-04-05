@@ -370,6 +370,8 @@ class SerializableClosure implements Serializable
      */
     public static function wrapClosures(&$data, SplObjectStorage $storage = null)
     {
+        static::enterContext();
+
         if($storage === null){
             $storage = static::$context->scope;
         }
@@ -429,6 +431,8 @@ class SerializableClosure implements Serializable
                 };
             } while($reflection = $reflection->getParentClass());
         }
+
+        static::exitContext();
     }
 
     /**

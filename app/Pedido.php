@@ -27,4 +27,12 @@ class Pedido extends Model
         return $query;
     }
 
+    public function getPedidosCliente($cliente_id) {
+        $query = DB::table('pedidos as ped')
+            ->select('ped.*')
+            ->where('ped.telefone', '=', $cliente_id)
+            ->orderBy('ped.id', 'desc')
+            ->get();
+        return $query;
+    }
 }

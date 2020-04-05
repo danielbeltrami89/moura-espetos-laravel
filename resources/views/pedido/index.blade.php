@@ -37,7 +37,7 @@
             <tr>
               <td><a href="{{ route('ver_pedido', ['pedido_id' => $pedido->id ]) }}">#{{ $pedido->id }}</a></td>
               <td>{{ $pedido->cliente_nome }}</td>
-              <td>{{ $pedido->cliente_telefone }}</td>
+              <td><a href="https://wa.me/55{{ $pedido->cliente_telefone }}" target="_blank">{{ $pedido->cliente_telefone }}</td>
               <td>{{ $pedido->valor_total }}</td>
               <td>{{ $pedido->status }}</td>
               <td>{{ Carbon\Carbon::parse($pedido->created_at)->sub('3 hours')->format('d/m/Y H:i')	}}</td>

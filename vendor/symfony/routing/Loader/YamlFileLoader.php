@@ -15,7 +15,6 @@ use Symfony\Component\Config\Loader\FileLoader;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\RouteCompiler;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser as YamlParser;
 use Symfony\Component\Yaml\Yaml;
@@ -29,7 +28,7 @@ use Symfony\Component\Yaml\Yaml;
 class YamlFileLoader extends FileLoader
 {
     private static $availableKeys = [
-        'resource', 'type', 'prefix', 'path', 'host', 'schemes', 'methods', 'defaults', 'requirements', 'options', 'condition', 'controller', 'name_prefix', 'trailing_slash_on_root', 'locale', 'format', 'utf8', 'exclude',
+        'resource', 'type', 'prefix', 'path', 'host', 'schemes', 'methods', 'defaults', 'requirements', 'options', 'condition', 'controller', 'name_prefix', 'trailing_slash_on_root', 'locale', 'format', 'utf8',
     ];
     private $yamlParser;
 
@@ -102,9 +101,10 @@ class YamlFileLoader extends FileLoader
     /**
      * Parses a route and adds it to the RouteCollection.
      *
-     * @param string $name   Route name
-     * @param array  $config Route definition
-     * @param string $path   Full path of the YAML file being processed
+     * @param RouteCollection $collection A RouteCollection instance
+     * @param string          $name       Route name
+     * @param array           $config     Route definition
+     * @param string          $path       Full path of the YAML file being processed
      */
     protected function parseRoute(RouteCollection $collection, $name, array $config, $path)
     {
@@ -141,7 +141,6 @@ class YamlFileLoader extends FileLoader
             foreach ($config['path'] as $locale => $path) {
                 $localizedRoute = clone $route;
                 $localizedRoute->setDefault('_locale', $locale);
-                $localizedRoute->setRequirement('_locale', preg_quote($locale, RouteCompiler::REGEX_DELIMITER));
                 $localizedRoute->setDefault('_canonical_route', $name);
                 $localizedRoute->setPath($path);
                 $collection->add($name.'.'.$locale, $localizedRoute);
@@ -155,9 +154,10 @@ class YamlFileLoader extends FileLoader
     /**
      * Parses an import and adds the routes in the resource to the RouteCollection.
      *
-     * @param array  $config Route definition
-     * @param string $path   Full path of the YAML file being processed
-     * @param string $file   Loaded file name
+     * @param RouteCollection $collection A RouteCollection instance
+     * @param array           $config     Route definition
+     * @param string          $path       Full path of the YAML file being processed
+     * @param string          $file       Loaded file name
      */
     protected function parseImport(RouteCollection $collection, array $config, $path, $file)
     {
@@ -171,7 +171,6 @@ class YamlFileLoader extends FileLoader
         $schemes = isset($config['schemes']) ? $config['schemes'] : null;
         $methods = isset($config['methods']) ? $config['methods'] : null;
         $trailingSlashOnRoot = $config['trailing_slash_on_root'] ?? true;
-        $exclude = $config['exclude'] ?? null;
 
         if (isset($config['controller'])) {
             $defaults['_controller'] = $config['controller'];
@@ -188,7 +187,7 @@ class YamlFileLoader extends FileLoader
 
         $this->setCurrentDir(\dirname($path));
 
-        $imported = $this->import($config['resource'], $type, false, $file, $exclude) ?: [];
+        $imported = $this->import($config['resource'], $type, false, $file);
 
         if (!\is_array($imported)) {
             $imported = [$imported];

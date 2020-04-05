@@ -1,12 +1,6 @@
+@extends('layouts-cliente.app')
 
-<!doctype html>
-<html lang="en">
-
-@include('layouts-cliente.header')
-
-  <body>
-   
-    @include('layouts-cliente.topbar')
+@section('content')
 
     <div class="position-relative overflow-hidden m-md-3 text-center bg-dark">
       
@@ -74,7 +68,4 @@
       width="100%" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
     </iframe>
     
-    @include('layouts-cliente.footer')
-
-  </body>
-</html>
+  @endsection

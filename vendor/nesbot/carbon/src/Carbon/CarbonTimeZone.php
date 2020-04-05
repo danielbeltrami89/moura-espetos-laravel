@@ -21,27 +21,16 @@ class CarbonTimeZone extends DateTimeZone
         parent::__construct(static::getDateTimeZoneNameFromMixed($timezone));
     }
 
-    protected static function parseNumericTimezone($timezone)
-    {
-        if ($timezone <= -100 || $timezone >= 100) {
-            throw new InvalidArgumentException('Absolute timezone offset cannot be greater than 100.');
-        }
-
-        return ($timezone >= 0 ? '+' : '').$timezone.':00';
-    }
-
     protected static function getDateTimeZoneNameFromMixed($timezone)
     {
         if (is_null($timezone)) {
-            return date_default_timezone_get();
-        }
+            $timezone = date_default_timezone_get();
+        } elseif (is_numeric($timezone)) {
+            if ($timezone <= -100 || $timezone >= 100) {
+                throw new InvalidArgumentException('Absolute timezone offset cannot be greater than 100.');
+            }
 
-        if (is_string($timezone)) {
-            $timezone = preg_replace('/^\s*([+-]\d+)(\d{2})\s*$/', '$1:$2', $timezone);
-        }
-
-        if (is_numeric($timezone)) {
-            return static::parseNumericTimezone($timezone);
+            $timezone = ($timezone >= 0 ? '+' : '').$timezone.':00';
         }
 
         return $timezone;

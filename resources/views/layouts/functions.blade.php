@@ -190,9 +190,6 @@
 </script>
 <!-- Fim Logout Modal-->
 
-<!-- Core plugin JavaScript-->
-<script src="{{ asset('vendor/vendor_admin/jquery-easing/jquery.easing.min.js') }}"></script>
-
 <script>
 			/*
 			 * Para efeito de demonstração, o JavaScript foi
@@ -234,15 +231,19 @@
 			});
 		</script>
 
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/vendor_admin/jquery-easing/jquery.easing.min.js') }}"></script>
+
 <!-- Custom scripts for all pages-->
 <script src="{{ asset('js/js_admin/sb-admin-2.min.js') }}"></script>
 
 <!-- Page level plugins -->
-<script src="{{ asset('vendor/vendor_admin/chart.js/Chart.min.js') }}"></script>
+<script src="{{-- asset('vendor/vendor_admin/chart.js/Chart.min.js') --}}"></script>
 
 <!-- Page level custom scripts -->
-<script src="{{ asset('js/js_admin/demo/chart-area-demo.js') }}"></script>
-<script src="{{ asset('js/js_admin/demo/chart-pie-demo.js') }}"></script>
+<script src="{{-- asset('js/js_admin/demo/chart-area-demo.js') --}}"></script>
+<script src="{{-- asset('js/js_admin/demo/chart-pie-demo.js') --}}"></script>
 
 <!-- Page level plugins -->
 <script src="{{ asset('vendor/vendor_admin/datatables/jquery.dataTables.min.js') }}"></script>

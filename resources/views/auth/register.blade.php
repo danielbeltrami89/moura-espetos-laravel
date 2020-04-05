@@ -56,22 +56,22 @@
                             </div>
 
                             <!-- CPF -->
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label for="cpf" class="col-md-3 col-form-label text-md-right">CPF</label>
 
                                 <div class="col-md-7">
-                                    <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror"
-                                        name="cpf" value="{{ old('cpf') }}" required autocomplete="cpf" maxlength="14" 
+                                    <input id="cpf" type="text" class="form-control {{-- @error('cpf') is-invalid @enderror --}}"
+                                        name="cpf" value="{{-- old('cpf') --}}" required autocomplete="cpf" maxlength="14" 
                                         onkeydown="javascript: fMasc( this, mCPF );"
                                      >
 
-                                    @error('cpf')
+                                    {{-- @error('cpf') --}}
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                            <strong>{{-- $message --}}</strong>
                                         </span>
-                                    @enderror
+                                    {{-- @enderror --}}
                                 </div>
-                            </div>
+                            </div> -->
                             
                             <!-- Telefone -->
                             <div class="form-group row">
