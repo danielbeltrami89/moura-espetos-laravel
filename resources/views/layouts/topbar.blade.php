@@ -10,7 +10,7 @@
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a class="nav-link" href="{{ route('inicio') }}" target="_blank">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small mr-3">Ver site</span>
+        <span class="mr-2 d-lg-inline text-gray-600 small mr-3">Ver site</span>
       </a>
     </li>
      

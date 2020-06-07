@@ -51,9 +51,8 @@
         <div class="form-group">
           <label for="imagem">Imagem do menu</label><br>
           <img class="img w-100" 
-            src="{{ $imagem ? url("storage/imagem_itens/{$imagem}") : url("storage/imagem_itens/no-image.png") }}" 
-          ><br><br>
-          <input type="file" name="image" class="form-control">
+            src="{{ $imagem ? url("storage/imagem_itens/{$imagem}") : url("storage/imagem_itens/no-image.png") }}" ><br><br>
+          <input type="file" name="image" class="form-control" >
         </div>
       </div>
 

@@ -11,7 +11,7 @@
         <main role="main" class="flex-shrink-0">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-8 mt-5">
+                    <div class="col-md-8 my-5">
                         <div class="card shadow">
                             <div class="card-header">
                                 <p class="h4 text-gray-800 text-center mt-2">Login</p>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html class="h-100">
+<html>
 
 @include('layouts-cliente.header')
 
-<body class="d-flex flex-column h-100">
+<body>
    
   @include('layouts-cliente.topbar')
 

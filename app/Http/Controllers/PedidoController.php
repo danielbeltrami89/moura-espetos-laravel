@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+
 
 use Illuminate\Http\Request;
 use App\Pedido as Pedido;
 use App\Item as Item;
 use App\User as Cliente;
 use App\ItemPedido as ItemPedido;
+
+use App\Mail\EnviaEmail;
     
 class PedidoController extends Controller {
 
@@ -62,56 +66,59 @@ class PedidoController extends Controller {
         return view('cliente/pedidos-cliente', $data);
     }
 
-    public function addPedido(Request $request, Pedido $pedido, ItemPedido $itemPedido) {
+    public function verPedidoCliente($cliente_id, Pedido $pedido, $pedido_id, ItemPedido $itemPedido) {
         
-        $pedido->valor_total = 0;
-        $pedido->status = 'Novo';
-        $pedido->telefone = '1195';
-        $salvou = $pedido->save(); 
-        if ($salvou) {
-            $itemPedido = new ItemPedido();
-            $itemPedido->pedido_id = $pedido->id;
-            //$itemPedido->item_id = $request->get('id');
-            $itemPedido->item_id = 1;
-            $itemPedido->save(); 
-        }
-        //dd($pedido->id);
+        $data = [];
+        $data['pedido'] = $this->pedido->getPedido($pedido_id);
+        $data['itens_pedido'] = $this->itemPedido->getItensPedido($pedido_id);
+            
+        //dd($data);
 
-        return Redirect::back()->with('msg_return', 'Pedido criado com sucesso!');
+        return view('cliente/pedido-cliente', $data);
     }
 
     public function fazerPedido(Request $request, Pedido $pedido, ItemPedido $itemPedido) {
         
-        $telefone = session()->get('tel');
-        //dd($telefone);
-        if ($telefone != null) {
+        $user_id = session()->get('id');
+        $user = Cliente::find($user_id);
+
+        //dd($user);
+        if ($user_id != null) {
             $pedido = new Pedido();
             $pedido->status = 'Novo';
-            $pedido->telefone = $telefone;
+            $pedido->user_id = $user->id;
             $pedido->valor_total = 0;
             $itens_pedido = [];
             $itens_pedido = session()->get('cart');
-            $pedido->save();
+            if ($itens_pedido > 0 ) {
+                $pedido->save();
 
-            $total = 0;
-            foreach ($itens_pedido as $item) {
-                //dd($item);
-                for ($i=0; $i < $item["qnt"]; $i++) { 
-                    $itemPedido = new ItemPedido();
-                    $itemPedido->pedido_id = $pedido->id;
-                    $itemPedido->item_id = $item["id"];
-                    $total = $total + $item["valor"];
-                    //dd($itemPedido);
-                    $itemPedido->save(); 
+                $total = 0;
+                foreach ($itens_pedido as $item) {
+                    //dd($item);
+                    for ($i=0; $i < $item["qnt"]; $i++) { 
+                        $itemPedido = new ItemPedido();
+                        $itemPedido->pedido_id = $pedido->id;
+                        $itemPedido->item_id = $item["id"];
+                        $total = $total + $item["valor"];
+                        //dd($itemPedido);
+                        $itemPedido->save(); 
+                    }
                 }
-            }
-            $pedido->valor_total = $total;
-            $pedido->save();
-            
-            //dd($total);
+                $pedido->valor_total = $total;
+                $pedido->save();
+                
+                //dd($total);
+                //Mail::to($user->email)->send(new EnviaEmail());
+                //Mail::to("mouragrazielle@gmail.com")->send(new EnviaEmail());
     
-            session()->forget('cart');
-            return Redirect::back()->with('msg_return', 'Pedido criado com sucesso!');
+                //session()->forget('cart');
+                //return Redirect::back()->with('msg_return', 'Pedido criado com sucesso!');
+                return redirect()->route('pagar-pedido', ['cliente_id' => session()->get('id'), 'pedido_id' => $pedido->id ]);
+            } else {
+                return Redirect::back()->with('msg_return', 'Adicione algum item ao carrinho.');
+            }
+            
         } else {
             return Redirect::back()->with('msg_return', 'Faça login para fazer seu pedido!');
         }
@@ -185,7 +192,7 @@ class PedidoController extends Controller {
             $cart[$request->id]["qnt"] = $request->qnt;
  
             session()->put('cart', $cart);
-            session()->flash('msg_return', 'Carrinho atualizado.');
+            //session()->flash('msg_return', 'Carrinho atualizado.');
         }
     }
  

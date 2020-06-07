@@ -126,6 +126,8 @@ class ItemController extends Controller {
                 ]
             );
 
+            //dd($request);
+
             $item_data = $this->item->find($item_id);
             $item_data->nome = $request->input('nome');
             $item_data->descricao = $request->input('descricao');
@@ -158,8 +160,9 @@ class ItemController extends Controller {
                                 ->with('error', 'Falha ao fazer upload')
                                 ->withInput();
         
-              }
-              $item_data->imagem = $nameFile;
+
+                $item_data->imagem = $nameFile;
+            }
 
             $item_data->save();
             

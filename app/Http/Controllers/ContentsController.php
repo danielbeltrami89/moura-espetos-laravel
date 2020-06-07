@@ -10,18 +10,6 @@ use App\User as Cliente;
 class ContentsController extends Controller
 {
 
-    // public function __construct(Movimentacao $movimentacao, 
-    //                             Item $item,
-    //                             Setor $setor,
-    //                             Local $local) 
-    // {
-    //     $this->item = $item;
-    //     $this->movimentacao = $movimentacao;
-    //     $this->setor = $setor;
-    //     $this->local = $local;        
-        
-    // }
-
     public function __construct(Item $item, Pedido $pedido, Cliente $cliente) {
         $this->item = $item;   
         $this->pedido = $pedido;
@@ -33,6 +21,7 @@ class ContentsController extends Controller
         $data['itens'] = $this->item->getTop5Itens();
         $data['item_count'] = $this->item::count();
         $data['pedido_count'] = $this->pedido::count();
+        $data['pedido_novos'] = $this->pedido->getPedidosNovos();
         $data['cliente_count'] = $this->cliente::count();
         
         //dd($data);

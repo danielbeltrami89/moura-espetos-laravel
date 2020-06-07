@@ -17,8 +17,16 @@ class CreatePedidosTable extends Migration
             $table->bigIncrements('id');
             $table->decimal('valor_total', 5,2);
             $table->string('status');
-            $table->string('telefone');
-            $table->foreign('telefone')->references('telefone')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->string('pag_id');
+            $table->string('pag_status');
+
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            // $table->string('telefone');
+            // $table->foreign('telefone')->references('telefone')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

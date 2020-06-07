@@ -26,7 +26,8 @@
 
         <div class="form-group col-md-2">
           <select name="status" class="form-control">
-            <option value="Novo"{{ $pedido[0]->status == "Novo" ? 'selected="selected"' : '' }}>Novo</option>
+            <option value="Novo"{{ $pedido[0]->status == "Novo" ? 'selected="selected"' : '' }}>Novo</option>    
+            <option value="Aguardando pagamento"{{ $pedido[0]->status == "Aguardando pagamento" ? 'selected="selected"' : '' }}>Aguardando pagamento</option>
             <option value="Preparando"{{ $pedido[0]->status == "Preparando" ? 'selected="selected"' : '' }}>Preparando</option>
             <option value="Pronto"{{ $pedido[0]->status == "Pronto" ? 'selected="selected"' : '' }}>Pronto</option>
             <option value="Entregue"{{ $pedido[0]->status == "Entregue" ? 'selected="selected"' : '' }}>Entregue</option>
@@ -75,7 +76,7 @@
       <div class="form-row justify-content-md-center">
         <div class="form-group col-md-11">
           <p></br></p>
-          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="submit" class="btn btn-primary float-right">Salvar</button>
         </div>
       </div>
      

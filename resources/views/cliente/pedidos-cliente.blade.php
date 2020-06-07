@@ -19,7 +19,9 @@
                             <tr>
                               <th scope="col">N• Pedido</th>
                               <th scope="col">Status</th>
-                              <th scope="col" class="text-right">Valor</th>
+                              <th scope="col" class="text-right">Valor</th>     
+                               <th scope="col"></th>
+
                             </tr>
                           </thead>
                           <tbody>
@@ -28,6 +30,9 @@
                               <th scope="row">{{ $pedido->id }}</th>
                               <td>{{ $pedido->status }}</td>
                               <td class="text-right">R$ {{ $pedido->valor_total }}</td>
+                              <td>                                            
+                                <a class="btn btn-primary float-right btn-sm" href="{{ route('pedido-cliente', ['cliente_id' => session()->get('id'), 'pedido_id' => $pedido->id ]) }}">Ver pedido</a>
+                              </td>
                             </tr>
                             @endforeach
                           </tbody>

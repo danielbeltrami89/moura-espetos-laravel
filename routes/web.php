@@ -37,29 +37,34 @@ Route::middleware(['auth','check.adm'])->group( function(){
     Route::post('/painel/usuarios/editar/{user_id}', 'UserController@editar')->name('editar_user');
 });
 
+
+Route::middleware(['auth','check.user'])->group( function(){
+ 
+    Route::get('/pedidos-cliente/{id}', 'PedidoController@verPedidosCliente')->name('pedidos-cliente'); 
+    Route::get('/pedidos-cliente/{id}/pedido/{pedido_id}', 'PedidoController@verPedidoCliente')->name('pedido-cliente');
+    Route::get('/cliente/{id}', 'UserController@verCliente')->name('ver_cliente');
+    Route::post('/cliente/{id}', 'UserController@editarCliente')->name('editar_cliente');
+
+    Route::get('/pedidos-cliente/{id}/pedido/{pedido_id}/confirmar', 'PagamentoController@pagarPedido')->name('pagar-pedido');
+    Route::get('/pedidos-cliente/{id}/pedido/{pedido_id}/{response}', 'PagamentoController@pagarResponse')->name('pagar-response');
+
+});
+
 Auth::routes();
 
 Route::post('/', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/pedidos-cliente/{cliente_id}', 'PedidoController@verPedidosCliente')->name('pedidos-cliente'); 
-Route::get('/cliente/meus-dados/{user_id}', 'UserController@verCliente')->name('ver_cliente');
-Route::post('/cliente/meus-dados/{user_id}', 'UserController@editarCliente')->name('editar_cliente');
-
-
 
 Route::get('/', function() {  return view('cliente/inicio'); })->name('inicio');
 Route::get('/faca-seu-pedido', 'ItemController@indexCliente')->name('produtos_cliente');
-Route::get('/faca-seu-pedido/teste', 'PedidoController@addPedido')->name('add_pedido'); 
 
 Route::get('/faca-seu-pedido/fazer-pedido', 'PedidoController@fazerPedido')->name('fazer_pedido'); 
 Route::post('/faca-seu-pedido/add-carrinho', 'PedidoController@addToCart')->name('add-cart'); 
-Route::get('/faca-seu-pedido/carrinho/', function() {  return view('cliente/carrinho'); })->name('cart'); 
-
+Route::get('/faca-seu-pedido/carrinho', function() { return view('cliente/carrinho'); })->name('cart'); 
 Route::patch('update-cart', 'PedidoController@update');
 Route::delete('remove-from-cart', 'PedidoController@remove');
 
-Route::get('/pedidos-cliente/{cliente_id}', 'PedidoController@verPedidosCliente')->name('pedidos-cliente'); 
+Route::get('/mercadopago', 'PagamentoController@pagar');
+Route::get('/envia', 'PagamentoController@envia');
 
-// Gerador de senha manual
-Route::get('/generate/password', function() { return bcrypt('aaaaaa'); } );
 

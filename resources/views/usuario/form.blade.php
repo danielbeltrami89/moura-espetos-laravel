@@ -94,13 +94,13 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="password">Senha</label>
-          <input type="password" class="form-control" name="password" placeholder="">
+          <input type="password" class="form-control" name="password">
           <small class="erro">{{ $errors->first('password') }}</small>
         </div>
         
         <div class="form-group col-md-6">
           <label for="password_confirmation">Confirmar senha</label>
-          <input type="password" class="form-control" name="password_confirmation" placeholder="">
+          <input type="password" class="form-control" name="password_confirmation">
         </div>
         <p class="text-sm-right">{{ $editar == 1 ? '*Caso não queira alterar a senha basta deixar os campos de senha em branco.' : '' }}</p>
 

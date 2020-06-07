@@ -19,9 +19,7 @@ class CheckADM
         if ( !auth()->check() )
             return redirect()->route('login');
 
-        $userTipo = Auth::user()->tipo;
-
-        if ( $userTipo == 'ADM' ) {
+        if ( auth()->user()->tipo == 'ADM' ) {
             return $next($request);
         }
         

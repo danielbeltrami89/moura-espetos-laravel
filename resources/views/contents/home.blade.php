@@ -17,6 +17,7 @@
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
+                <a href="{{ route('todos_itens') }}" class="stretched-link"></a>
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Menu</div>
@@ -34,6 +35,7 @@
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
+                    <a href="{{ route('todos_pedidos') }}" class="stretched-link"></a>
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pedidos</div>
@@ -41,6 +43,7 @@
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-fw fa-shopping-cart fa-2x text-gray-300"></i>
+                            <span class="badge badge-danger badge-counter">{{ $pedido_novos }}</span>
                         </div>
                     </div>
                 </div>
@@ -51,6 +54,7 @@
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
+                <a href="{{ route('todos_users') }}" class="stretched-link"></a>
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Clientes</div>
@@ -62,6 +66,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
 
         <!-- Pending Requests Card Example -->

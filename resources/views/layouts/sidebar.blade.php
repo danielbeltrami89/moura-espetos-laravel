@@ -4,7 +4,7 @@
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
   
-  <img class="img" src="{{ asset('img/img_admin/espeto-na-brasa.png') }}">
+  <img class="img" src="{{ asset('img/img_admin/moura-espeto.png') }}">
   
 </a>
 
