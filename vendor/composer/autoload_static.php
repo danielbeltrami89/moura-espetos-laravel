@@ -4,13 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
+class ComposerStaticInitea5b42c3a36607c0981ca50decb5de9a
 {
     public static $files = array (
-        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
@@ -46,6 +47,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -125,6 +127,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
             'Dotenv\\' => 7,
             'Doctrine\\Persistence\\' => 21,
             'Doctrine\\Instantiator\\' => 22,
+            'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
             'Doctrine\\Common\\Collections\\' => 28,
@@ -175,6 +178,10 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
         'Symfony\\Polyfill\\Php73\\' => 
         array (
@@ -364,6 +371,10 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
+        'Doctrine\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
+        ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
@@ -445,6 +456,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'App\\Http\\Controllers\\ContentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContentsController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ItemController' => __DIR__ . '/../..' . '/app/Http/Controllers/ItemController.php',
+        'App\\Http\\Controllers\\PagamentoController' => __DIR__ . '/../..' . '/app/Http/Controllers/PagamentoController.php',
         'App\\Http\\Controllers\\PedidoController' => __DIR__ . '/../..' . '/app/Http/Controllers/PedidoController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -460,6 +472,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'App\\Item' => __DIR__ . '/../..' . '/app/Item.php',
         'App\\ItemPedido' => __DIR__ . '/../..' . '/app/ItemPedido.php',
         'App\\Mail\\EnviaEmail' => __DIR__ . '/../..' . '/app/Mail/EnviaEmail.php',
+        'App\\Mail\\EnviaEmailAdm' => __DIR__ . '/../..' . '/app/Mail/EnviaEmailAdm.php',
         'App\\Pedido' => __DIR__ . '/../..' . '/app/Pedido.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -479,15 +492,41 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'Carbon\\CarbonPeriod' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonPeriod.php',
         'Carbon\\CarbonTimeZone' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonTimeZone.php',
         'Carbon\\Cli\\Invoker' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Cli/Invoker.php',
+        'Carbon\\Doctrine\\CarbonDoctrineType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonDoctrineType.php',
+        'Carbon\\Doctrine\\CarbonImmutableType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonImmutableType.php',
         'Carbon\\Doctrine\\CarbonType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonType.php',
+        'Carbon\\Doctrine\\CarbonTypeConverter' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/CarbonTypeConverter.php',
         'Carbon\\Doctrine\\DateTimeDefaultPrecision' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeDefaultPrecision.php',
         'Carbon\\Doctrine\\DateTimeImmutableType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeImmutableType.php',
         'Carbon\\Doctrine\\DateTimeType' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Doctrine/DateTimeType.php',
-        'Carbon\\Exceptions\\BadUnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadUnitException.php',
+        'Carbon\\Exceptions\\BadComparisonUnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadComparisonUnitException.php',
+        'Carbon\\Exceptions\\BadFluentConstructorException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentConstructorException.php',
+        'Carbon\\Exceptions\\BadFluentSetterException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadFluentSetterException.php',
+        'Carbon\\Exceptions\\BadMethodCallException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/BadMethodCallException.php',
+        'Carbon\\Exceptions\\Exception' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/Exception.php',
+        'Carbon\\Exceptions\\ImmutableException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/ImmutableException.php',
+        'Carbon\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidArgumentException.php',
+        'Carbon\\Exceptions\\InvalidCastException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidCastException.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
+        'Carbon\\Exceptions\\InvalidFormatException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidFormatException.php',
+        'Carbon\\Exceptions\\InvalidIntervalException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidIntervalException.php',
+        'Carbon\\Exceptions\\InvalidPeriodDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidPeriodDateException.php',
+        'Carbon\\Exceptions\\InvalidPeriodParameterException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidPeriodParameterException.php',
+        'Carbon\\Exceptions\\InvalidTimeZoneException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidTimeZoneException.php',
+        'Carbon\\Exceptions\\InvalidTypeException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidTypeException.php',
+        'Carbon\\Exceptions\\NotACarbonClassException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/NotACarbonClassException.php',
         'Carbon\\Exceptions\\NotAPeriodException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/NotAPeriodException.php',
         'Carbon\\Exceptions\\NotLocaleAwareException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/NotLocaleAwareException.php',
+        'Carbon\\Exceptions\\OutOfRangeException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/OutOfRangeException.php',
         'Carbon\\Exceptions\\ParseErrorException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/ParseErrorException.php',
+        'Carbon\\Exceptions\\RuntimeException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/RuntimeException.php',
+        'Carbon\\Exceptions\\UnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnitException.php',
+        'Carbon\\Exceptions\\UnitNotConfiguredException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnitNotConfiguredException.php',
+        'Carbon\\Exceptions\\UnknownGetterException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnknownGetterException.php',
+        'Carbon\\Exceptions\\UnknownMethodException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnknownMethodException.php',
+        'Carbon\\Exceptions\\UnknownSetterException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnknownSetterException.php',
+        'Carbon\\Exceptions\\UnknownUnitException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnknownUnitException.php',
+        'Carbon\\Exceptions\\UnreachableException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/UnreachableException.php',
         'Carbon\\Factory' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Factory.php',
         'Carbon\\FactoryImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/FactoryImmutable.php',
         'Carbon\\Language' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Language.php',
@@ -499,6 +538,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'Carbon\\Traits\\Creator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Creator.php',
         'Carbon\\Traits\\Date' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Date.php',
         'Carbon\\Traits\\Difference' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Difference.php',
+        'Carbon\\Traits\\IntervalRounding' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/IntervalRounding.php',
         'Carbon\\Traits\\Localization' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Localization.php',
         'Carbon\\Traits\\Macro' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Macro.php',
         'Carbon\\Traits\\Mixin' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Mixin.php',
@@ -679,6 +719,47 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'Doctrine\\Common\\Util\\Debug' => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common/Util/Debug.php',
         'Doctrine\\Common\\Util\\Inflector' => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common/Util/Inflector.php',
         'Doctrine\\Common\\Version' => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common/Version.php',
+        'Doctrine\\Inflector\\CachedWordInflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/CachedWordInflector.php',
+        'Doctrine\\Inflector\\GenericLanguageInflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/GenericLanguageInflectorFactory.php',
+        'Doctrine\\Inflector\\Inflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Inflector.php',
+        'Doctrine\\Inflector\\InflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/InflectorFactory.php',
+        'Doctrine\\Inflector\\Language' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Language.php',
+        'Doctrine\\Inflector\\LanguageInflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/LanguageInflectorFactory.php',
+        'Doctrine\\Inflector\\NoopWordInflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/NoopWordInflector.php',
+        'Doctrine\\Inflector\\Rules\\English\\Inflectible' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/English/Inflectible.php',
+        'Doctrine\\Inflector\\Rules\\English\\InflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/English/InflectorFactory.php',
+        'Doctrine\\Inflector\\Rules\\English\\Rules' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/English/Rules.php',
+        'Doctrine\\Inflector\\Rules\\English\\Uninflected' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/English/Uninflected.php',
+        'Doctrine\\Inflector\\Rules\\French\\Inflectible' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/French/Inflectible.php',
+        'Doctrine\\Inflector\\Rules\\French\\InflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/French/InflectorFactory.php',
+        'Doctrine\\Inflector\\Rules\\French\\Rules' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/French/Rules.php',
+        'Doctrine\\Inflector\\Rules\\French\\Uninflected' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/French/Uninflected.php',
+        'Doctrine\\Inflector\\Rules\\NorwegianBokmal\\Inflectible' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/NorwegianBokmal/Inflectible.php',
+        'Doctrine\\Inflector\\Rules\\NorwegianBokmal\\InflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/NorwegianBokmal/InflectorFactory.php',
+        'Doctrine\\Inflector\\Rules\\NorwegianBokmal\\Rules' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/NorwegianBokmal/Rules.php',
+        'Doctrine\\Inflector\\Rules\\NorwegianBokmal\\Uninflected' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/NorwegianBokmal/Uninflected.php',
+        'Doctrine\\Inflector\\Rules\\Pattern' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Pattern.php',
+        'Doctrine\\Inflector\\Rules\\Patterns' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Patterns.php',
+        'Doctrine\\Inflector\\Rules\\Portuguese\\Inflectible' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Portuguese/Inflectible.php',
+        'Doctrine\\Inflector\\Rules\\Portuguese\\InflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Portuguese/InflectorFactory.php',
+        'Doctrine\\Inflector\\Rules\\Portuguese\\Rules' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Portuguese/Rules.php',
+        'Doctrine\\Inflector\\Rules\\Portuguese\\Uninflected' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Portuguese/Uninflected.php',
+        'Doctrine\\Inflector\\Rules\\Ruleset' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Ruleset.php',
+        'Doctrine\\Inflector\\Rules\\Spanish\\Inflectible' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Spanish/Inflectible.php',
+        'Doctrine\\Inflector\\Rules\\Spanish\\InflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Spanish/InflectorFactory.php',
+        'Doctrine\\Inflector\\Rules\\Spanish\\Rules' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Spanish/Rules.php',
+        'Doctrine\\Inflector\\Rules\\Spanish\\Uninflected' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Spanish/Uninflected.php',
+        'Doctrine\\Inflector\\Rules\\Substitution' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Substitution.php',
+        'Doctrine\\Inflector\\Rules\\Substitutions' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Substitutions.php',
+        'Doctrine\\Inflector\\Rules\\Transformation' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Transformation.php',
+        'Doctrine\\Inflector\\Rules\\Transformations' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Transformations.php',
+        'Doctrine\\Inflector\\Rules\\Turkish\\Inflectible' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Turkish/Inflectible.php',
+        'Doctrine\\Inflector\\Rules\\Turkish\\InflectorFactory' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Turkish/InflectorFactory.php',
+        'Doctrine\\Inflector\\Rules\\Turkish\\Rules' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Turkish/Rules.php',
+        'Doctrine\\Inflector\\Rules\\Turkish\\Uninflected' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Turkish/Uninflected.php',
+        'Doctrine\\Inflector\\Rules\\Word' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/Rules/Word.php',
+        'Doctrine\\Inflector\\RulesetInflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/RulesetInflector.php',
+        'Doctrine\\Inflector\\WordInflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector/WordInflector.php',
         'Doctrine\\Instantiator\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/ExceptionInterface.php',
         'Doctrine\\Instantiator\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/InvalidArgumentException.php',
         'Doctrine\\Instantiator\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/UnexpectedValueException.php',
@@ -3526,6 +3607,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',
@@ -3553,6 +3635,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'Symfony\\Component\\Console\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/symfony/console/Exception/InvalidArgumentException.php',
         'Symfony\\Component\\Console\\Exception\\InvalidOptionException' => __DIR__ . '/..' . '/symfony/console/Exception/InvalidOptionException.php',
         'Symfony\\Component\\Console\\Exception\\LogicException' => __DIR__ . '/..' . '/symfony/console/Exception/LogicException.php',
+        'Symfony\\Component\\Console\\Exception\\MissingInputException' => __DIR__ . '/..' . '/symfony/console/Exception/MissingInputException.php',
         'Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException' => __DIR__ . '/..' . '/symfony/console/Exception/NamespaceNotFoundException.php',
         'Symfony\\Component\\Console\\Exception\\RuntimeException' => __DIR__ . '/..' . '/symfony/console/Exception/RuntimeException.php',
         'Symfony\\Component\\Console\\Formatter\\OutputFormatter' => __DIR__ . '/..' . '/symfony/console/Formatter/OutputFormatter.php',
@@ -4248,6 +4331,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
         'Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
+        'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
@@ -4267,6 +4351,7 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',
@@ -4364,10 +4449,10 @@ class ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit64708f4f5abfd13140e22b1cdbfad900::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitea5b42c3a36607c0981ca50decb5de9a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitea5b42c3a36607c0981ca50decb5de9a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitea5b42c3a36607c0981ca50decb5de9a::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitea5b42c3a36607c0981ca50decb5de9a::$classMap;
 
         }, null, ClassLoader::class);
     }
