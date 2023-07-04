@@ -2,8 +2,8 @@
 
 namespace Illuminate\View;
 
-use InvalidArgumentException;
 use Illuminate\Filesystem\Filesystem;
+use InvalidArgumentException;
 
 class FileViewFinder implements ViewFinderInterface
 {
@@ -38,7 +38,7 @@ class FileViewFinder implements ViewFinderInterface
     /**
      * Register a view extension with the finder.
      *
-     * @var array
+     * @var string[]
      */
     protected $extensions = ['blade.php', 'php', 'css', 'html'];
 
@@ -119,7 +119,7 @@ class FileViewFinder implements ViewFinderInterface
      * Find the given view in the list of paths.
      *
      * @param  string  $name
-     * @param  array   $paths
+     * @param  array  $paths
      * @return string
      *
      * @throws \InvalidArgumentException
@@ -145,9 +145,7 @@ class FileViewFinder implements ViewFinderInterface
      */
     protected function getPossibleViewFiles($name)
     {
-        return array_map(function ($extension) use ($name) {
-            return str_replace('.', '/', $name).'.'.$extension;
-        }, $this->extensions);
+        return array_map(fn ($extension) => str_replace('.', '/', $name).'.'.$extension, $this->extensions);
     }
 
     /**

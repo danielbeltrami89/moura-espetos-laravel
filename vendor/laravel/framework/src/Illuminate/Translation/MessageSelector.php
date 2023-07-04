@@ -2,8 +2,6 @@
 
 namespace Illuminate\Translation;
 
-use Illuminate\Support\Str;
-
 class MessageSelector
 {
     /**
@@ -61,14 +59,14 @@ class MessageSelector
         preg_match('/^[\{\[]([^\[\]\{\}]*)[\}\]](.*)/s', $part, $matches);
 
         if (count($matches) !== 3) {
-            return;
+            return null;
         }
 
         $condition = $matches[1];
 
         $value = $matches[2];
 
-        if (Str::contains($condition, ',')) {
+        if (str_contains($condition, ',')) {
             [$from, $to] = explode(',', $condition, 2);
 
             if ($to === '*' && $number >= $from) {
@@ -91,16 +89,16 @@ class MessageSelector
      */
     private function stripConditions($segments)
     {
-        return collect($segments)->map(function ($part) {
-            return preg_replace('/^[\{\[]([^\[\]\{\}]*)[\}\]]/', '', $part);
-        })->all();
+        return collect($segments)
+            ->map(fn ($part) => preg_replace('/^[\{\[]([^\[\]\{\}]*)[\}\]]/', '', $part))
+            ->all();
     }
 
     /**
      * Get the index to use for pluralization.
      *
      * The plural rules are derived from code of the Zend Framework (2010-09-25), which
-     * is subject to the new BSD license (http://framework.zend.com/license/new-bsd)
+     * is subject to the new BSD license (https://framework.zend.com/license)
      * Copyright (c) 2005-2010 - Zend Technologies USA Inc. (http://www.zend.com)
      *
      * @param  string  $locale

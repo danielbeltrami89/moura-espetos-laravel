@@ -67,6 +67,7 @@ class MethodDefinitionPass implements Pass
 
         $methodParams = array();
         $params = $method->getParameters();
+        $isPhp81 = \PHP_VERSION_ID >= 80100;
         foreach ($params as $param) {
             $paramDef = $this->renderTypeHint($param);
             $paramDef .= $param->isPassedByReference() ? '&' : '';
@@ -75,7 +76,18 @@ class MethodDefinitionPass implements Pass
 
             if (!$param->isVariadic()) {
                 if (false !== $param->isDefaultValueAvailable()) {
-                    $paramDef .= ' = ' . var_export($param->getDefaultValue(), true);
+                    $defaultValue = $param->getDefaultValue();
+
+                    if (is_object($defaultValue)) {
+                        $prefix = get_class($defaultValue);
+                        if ($isPhp81 && enum_exists($prefix)) {
+                            $prefix = var_export($defaultValue, true);
+                        }
+                    } else {
+                        $prefix = var_export($defaultValue, true);
+                    }
+
+                    $paramDef .= ' = ' . $prefix;
                 } elseif ($param->isOptional()) {
                     $paramDef .= ' = null';
                 }
@@ -89,6 +101,7 @@ class MethodDefinitionPass implements Pass
     protected function renderReturnType(Method $method)
     {
         $type = $method->getReturnType();
+
         return $type ? sprintf(': %s', $type) : '';
     }
 
@@ -101,19 +114,9 @@ class MethodDefinitionPass implements Pass
 
     protected function renderTypeHint(Parameter $param)
     {
-        $typeHint = trim($param->getTypeHintAsString());
+        $typeHint = $param->getTypeHint();
 
-        if (!empty($typeHint)) {
-            if (!\Mockery::isBuiltInType($typeHint)) {
-                $typeHint = '\\'.$typeHint;
-            }
-
-            if (version_compare(PHP_VERSION, '7.1.0-dev') >= 0 && $param->allowsNull()) {
-                $typeHint = "?".$typeHint;
-            }
-        }
-
-        return $typeHint .= ' ';
+        return $typeHint === null ? '' : sprintf('%s ', $typeHint);
     }
 
     private function renderMethodBody($method, $config)
@@ -165,7 +168,7 @@ BODY;
 
         $body .= "\$ret = {$invoke}(__FUNCTION__, \$argv);\n";
 
-        if ($method->getReturnType() !== "void") {
+        if (! in_array($method->getReturnType(), ['never','void'], true)) {
             $body .= "return \$ret;\n";
         }
 

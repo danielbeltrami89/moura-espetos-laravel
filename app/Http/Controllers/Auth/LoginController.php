@@ -58,38 +58,38 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function login(Request $request)
-    // {
-    //     dd( Auth::attempt(['email' => 'moraesdan89@gmail.com', 'password' => 'E']) );
+    public function login(Request $request)
+    {
+        dd( Auth::attempt(['email' => 'administrador@gmail.com', 'password' => '12345']) );
 
-    //     // $this->validateLogin($request);
+        // $this->validateLogin($request);
 
-    //     // if ($this->hasTooManyLoginAttempts($request)) {
-    //     //     $this->fireLockoutEvent($request);
+        // if ($this->hasTooManyLoginAttempts($request)) {
+        //     $this->fireLockoutEvent($request);
 
-    //     //     return $this->sendLockoutResponse($request);
-    //     // }
+        //     return $this->sendLockoutResponse($request);
+        // }
 
-    //     // if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_activated' => 1])) {
-    //     //     // return redirect()->intended('dashboard');
-    //     // }  else {
-    //     //     $this->incrementLoginAttempts($request);
-    //     //     return response()->json([
-    //     //         'error' => 'This account is not activated.'
-    //     //     ], 401);
-    //     // }
+        // if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_activated' => 1])) {
+        //     // return redirect()->intended('dashboard');
+        // }  else {
+        //     $this->incrementLoginAttempts($request);
+        //     return response()->json([
+        //         'error' => 'This account is not activated.'
+        //     ], 401);
+        // }
 
-    //     // $this->incrementLoginAttempts($request);
-    //     // return $this->sendFailedLoginResponse($request);
-    // }
+        // $this->incrementLoginAttempts($request);
+        // return $this->sendFailedLoginResponse($request);
+    }
 
-    // protected function credentials(Request $request)
-    // {
-    //     $data = $request->all();
+    protected function credentials(Request $request)
+    {
+        $data = $request->all();
 
-    //     //dd($data);
-    //     //return $data;
-    // }
+        //dd($data);
+        //return $data;
+    }
 
     public function logout(){
         Auth::logout();

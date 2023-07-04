@@ -3,8 +3,8 @@
 namespace Illuminate\Foundation;
 
 use Exception;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Foundation\Application as ApplicationContract;
+use Illuminate\Filesystem\Filesystem;
 
 class ProviderRepository
 {
@@ -122,9 +122,7 @@ class ProviderRepository
             return;
         }
 
-        $this->app->make('events')->listen($events, function () use ($provider) {
-            $this->app->register($provider);
-        });
+        $this->app->make('events')->listen($events, fn () => $this->app->register($provider));
     }
 
     /**

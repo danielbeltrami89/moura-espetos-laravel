@@ -2,8 +2,8 @@
 
 namespace Illuminate\Queue\Capsule;
 
-use Illuminate\Queue\QueueManager;
 use Illuminate\Container\Container;
+use Illuminate\Queue\QueueManager;
 use Illuminate\Queue\QueueServiceProvider;
 use Illuminate\Support\Traits\CapsuleManagerTrait;
 
@@ -32,9 +32,9 @@ class Manager
     {
         $this->setupContainer($container ?: new Container);
 
-        // Once we have the container setup, we will setup the default configuration
-        // options in the container "config" bindings. This just makes this queue
-        // manager behave correctly since all the correct binding are in place.
+        // Once we have the container setup, we will set up the default configuration
+        // options in the container "config" bindings. This'll just make the queue
+        // manager behave correctly since all the correct bindings are in place.
         $this->setupDefaultConfiguration();
 
         $this->setupManager();
@@ -89,7 +89,7 @@ class Manager
      * Push a new job onto the queue.
      *
      * @param  string  $job
-     * @param  mixed   $data
+     * @param  mixed  $data
      * @param  string|null  $queue
      * @param  string|null  $connection
      * @return mixed
@@ -102,8 +102,8 @@ class Manager
     /**
      * Push a new an array of jobs onto the queue.
      *
-     * @param  array   $jobs
-     * @param  mixed   $data
+     * @param  array  $jobs
+     * @param  mixed  $data
      * @param  string|null  $queue
      * @param  string|null  $connection
      * @return mixed
@@ -114,11 +114,11 @@ class Manager
     }
 
     /**
-     * Push a new job onto the queue after a delay.
+     * Push a new job onto the queue after (n) seconds.
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
      * @param  string  $job
-     * @param  mixed   $data
+     * @param  mixed  $data
      * @param  string|null  $queue
      * @param  string|null  $connection
      * @return mixed
@@ -142,7 +142,7 @@ class Manager
     /**
      * Register a connection with the manager.
      *
-     * @param  array   $config
+     * @param  array  $config
      * @param  string  $name
      * @return void
      */
@@ -177,7 +177,7 @@ class Manager
      * Dynamically pass methods to the default connection.
      *
      * @param  string  $method
-     * @param  array   $parameters
+     * @param  array  $parameters
      * @return mixed
      */
     public static function __callStatic($method, $parameters)

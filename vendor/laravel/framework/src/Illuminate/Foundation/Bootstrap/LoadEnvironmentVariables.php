@@ -3,13 +3,10 @@
 namespace Illuminate\Foundation\Bootstrap;
 
 use Dotenv\Dotenv;
-use Dotenv\Environment\DotenvFactory;
 use Dotenv\Exception\InvalidFileException;
-use Dotenv\Environment\Adapter\PutenvAdapter;
-use Symfony\Component\Console\Input\ArgvInput;
-use Dotenv\Environment\Adapter\EnvConstAdapter;
 use Illuminate\Contracts\Foundation\Application;
-use Dotenv\Environment\Adapter\ServerConstAdapter;
+use Illuminate\Support\Env;
+use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class LoadEnvironmentVariables
@@ -43,20 +40,20 @@ class LoadEnvironmentVariables
      */
     protected function checkForSpecificEnvironmentFile($app)
     {
-        if ($app->runningInConsole() && ($input = new ArgvInput)->hasParameterOption('--env')) {
-            if ($this->setEnvironmentFilePath(
-                $app, $app->environmentFile().'.'.$input->getParameterOption('--env')
-            )) {
-                return;
-            }
+        if ($app->runningInConsole() &&
+            ($input = new ArgvInput)->hasParameterOption('--env') &&
+            $this->setEnvironmentFilePath($app, $app->environmentFile().'.'.$input->getParameterOption('--env'))) {
+            return;
         }
 
-        if (! env('APP_ENV')) {
+        $environment = Env::get('APP_ENV');
+
+        if (! $environment) {
             return;
         }
 
         $this->setEnvironmentFilePath(
-            $app, $app->environmentFile().'.'.env('APP_ENV')
+            $app, $app->environmentFile().'.'.$environment
         );
     }
 
@@ -69,7 +66,7 @@ class LoadEnvironmentVariables
      */
     protected function setEnvironmentFilePath($app, $file)
     {
-        if (file_exists($app->environmentPath().'/'.$file)) {
+        if (is_file($app->environmentPath().'/'.$file)) {
             $app->loadEnvironmentFrom($file);
 
             return true;
@@ -87,9 +84,9 @@ class LoadEnvironmentVariables
     protected function createDotenv($app)
     {
         return Dotenv::create(
+            Env::getRepository(),
             $app->environmentPath(),
-            $app->environmentFile(),
-            new DotenvFactory([new EnvConstAdapter, new ServerConstAdapter, new PutenvAdapter])
+            $app->environmentFile()
         );
     }
 
@@ -106,6 +103,8 @@ class LoadEnvironmentVariables
         $output->writeln('The environment file is invalid!');
         $output->writeln($e->getMessage());
 
-        die(1);
+        http_response_code(500);
+
+        exit(1);
     }
 }

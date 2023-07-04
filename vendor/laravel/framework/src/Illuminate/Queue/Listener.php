@@ -3,8 +3,8 @@
 namespace Illuminate\Queue;
 
 use Closure;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
 
 class Listener
 {
@@ -30,7 +30,7 @@ class Listener
     protected $sleep = 3;
 
     /**
-     * The amount of times to try a job before logging it failed.
+     * The number of times to try a job before logging it failed.
      *
      * @var int
      */
@@ -88,6 +88,10 @@ class Listener
 
         while (true) {
             $this->runProcess($process, $options->memory);
+
+            if ($options->rest) {
+                sleep($options->rest);
+            }
         }
     }
 
@@ -151,11 +155,13 @@ class Listener
             'queue:work',
             $connection,
             '--once',
+            "--name={$options->name}",
             "--queue={$queue}",
-            "--delay={$options->delay}",
+            "--backoff={$options->backoff}",
             "--memory={$options->memory}",
             "--sleep={$options->sleep}",
             "--tries={$options->maxTries}",
+            $options->force ? '--force' : null,
         ], function ($value) {
             return ! is_null($value);
         });
@@ -214,7 +220,7 @@ class Listener
      */
     public function stop()
     {
-        die;
+        exit;
     }
 
     /**

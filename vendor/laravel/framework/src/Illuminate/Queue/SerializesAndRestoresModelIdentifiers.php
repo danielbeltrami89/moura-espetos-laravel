@@ -2,12 +2,12 @@
 
 namespace Illuminate\Queue;
 
-use Illuminate\Contracts\Queue\QueueableEntity;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Contracts\Database\ModelIdentifier;
 use Illuminate\Contracts\Queue\QueueableCollection;
-use Illuminate\Database\Eloquent\Relations\Concerns\AsPivot;
+use Illuminate\Contracts\Queue\QueueableEntity;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Database\Eloquent\Relations\Concerns\AsPivot;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 trait SerializesAndRestoresModelIdentifiers
 {
@@ -20,11 +20,15 @@ trait SerializesAndRestoresModelIdentifiers
     protected function getSerializedPropertyValue($value)
     {
         if ($value instanceof QueueableCollection) {
-            return new ModelIdentifier(
+            return (new ModelIdentifier(
                 $value->getQueueableClass(),
                 $value->getQueueableIds(),
                 $value->getQueueableRelations(),
                 $value->getQueueableConnection()
+            ))->useCollectionClass(
+                ($collectionClass = get_class($value)) !== EloquentCollection::class
+                    ? $collectionClass
+                    : null
             );
         }
 
@@ -66,7 +70,9 @@ trait SerializesAndRestoresModelIdentifiers
     protected function restoreCollection($value)
     {
         if (! $value->class || count($value->id) === 0) {
-            return new EloquentCollection;
+            return ! is_null($value->collectionClass ?? null)
+                ? new $value->collectionClass
+                : new EloquentCollection;
         }
 
         $collection = $this->getQueryForModelRestoration(

@@ -3,10 +3,9 @@
 namespace Illuminate\Validation;
 
 use Closure;
-use Illuminate\Support\Str;
 use Illuminate\Database\ConnectionResolverInterface;
 
-class DatabasePresenceVerifier implements PresenceVerifierInterface
+class DatabasePresenceVerifier implements DatabasePresenceVerifierInterface
 {
     /**
      * The database connection instance.
@@ -60,8 +59,8 @@ class DatabasePresenceVerifier implements PresenceVerifierInterface
      *
      * @param  string  $collection
      * @param  string  $column
-     * @param  array   $values
-     * @param  array   $extra
+     * @param  array  $values
+     * @param  array  $extra
      * @return int
      */
     public function getMultiCount($collection, $column, array $values, array $extra = [])
@@ -107,7 +106,7 @@ class DatabasePresenceVerifier implements PresenceVerifierInterface
             $query->whereNull($key);
         } elseif ($extraValue === 'NOT_NULL') {
             $query->whereNotNull($key);
-        } elseif (Str::startsWith($extraValue, '!')) {
+        } elseif (str_starts_with($extraValue, '!')) {
             $query->where($key, '!=', mb_substr($extraValue, 1));
         } else {
             $query->where($key, $extraValue);
@@ -120,7 +119,7 @@ class DatabasePresenceVerifier implements PresenceVerifierInterface
      * @param  string  $table
      * @return \Illuminate\Database\Query\Builder
      */
-    public function table($table)
+    protected function table($table)
     {
         return $this->db->connection($this->connection)->table($table)->useWritePdo();
     }
